@@ -25,6 +25,15 @@ const userSchema=new schema({
         },
         default:'user'
     },
+    profilePicture:{
+        type:String,
+        required:false
+    },
+    bookingHistory: { type: [String] },
+    ContactInformation:{
+        type:String,
+        required:false
+    },
     otp:{
         type:Number,
         required:true
