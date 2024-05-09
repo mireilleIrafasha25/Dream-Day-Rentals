@@ -113,9 +113,31 @@ export const SignIn=asyncWrapper(async(req,res,next)=>
     res.status(200).json({
         message:"User account verified!",
         user:FoundUser,
-        //token:token
+        token:token
     });
 });
+
+export const Logout=asyncWrapper(async(req,res,next)=>
+{
+    //validation 
+    const errors=validationResult(req)
+    if(!errors.isEmpty())
+    {
+        return next(new BadRequestError(errors.array()[0].msg))
+    }
+
+  
+ // Assuming you have a field in your user model to store the token
+  // For example, let's assume it's called 'token'
+  
+  //Clear the token from the database
+  UserModel.token = null; // or any mechanism to invalidate the token
+  await UserModel.save(); // Save the updated user to the database
+//   Token.token = null; // or any mechanism to invalidate the token
+//   await Token.save(); // Save the updated user to the database
+
+  res.status(200).json({ message: 'Logout successful' });  
+})
 
 export const ForgotPassword=asyncWrapper(async(req,res,next)=>
 {

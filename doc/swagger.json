@@ -149,6 +149,49 @@
     
 }
         },
+        "/user/logout":{
+            "post":{
+                "tags":["Users"],
+                "summary":"Sign out a user",
+                "description":"Sign out a user",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    }],
+                    "responses":{
+                        "200":{
+                            "description":"User logged out successfully",
+                            "content":{
+                              "application/json":{
+                                "schema":{
+                                  "$ref":"#/components/schemas/User"
+                                }
+                              }
+                            }
+                          },
+                          "400":{
+                            "description":"Bad request -Validation error",
+                            "content":{
+                              "application/json":{
+                                "schema":{
+                                  "type":"object",
+                                  "properties":{
+                                    "message":{
+                                      "type":"string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                    }
+            }
+        },
         "/user/verify":
     {
         "post":{
