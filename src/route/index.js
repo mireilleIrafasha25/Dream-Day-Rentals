@@ -1,4 +1,4 @@
-import userRoute from "../route/userRoute.js";
+import userRoute from "./userRoute.js";
 import express from "express";
 
 const route = express.Router();
