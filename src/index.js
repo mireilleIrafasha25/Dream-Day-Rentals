@@ -2,13 +2,17 @@ import express from 'express';
 import mongoose from 'mongoose';
 import router from './route/index.js';
 import errorHandler from './middleware/errorhandler.js';
-import Configuration from './configuration/configs.js';
+import dotenv from 'dotenv';
+
+
+dotenv.config()
+
 
 
 const app = express();
 app.use(express.json());
 app.use('/Weeding',router);
-mongoose.connect(Configuration.db)
+mongoose.connect(`${process.env.db}`)
 .then(()=>
 {
     console.log('connected to db');
@@ -18,8 +22,8 @@ mongoose.connect(Configuration.db)
         console.log(err);
     }
 )
-app.listen(Configuration.port,()=>
+app.listen(process.env.PORT,()=>
 {
-    console.log(`server is running on port ${Configuration.port}`);
+    console.log(`server is running on port ${process.env.PORT}`);
 })
 app.use(errorHandler)
