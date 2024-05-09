@@ -7,7 +7,9 @@ import {validationResult} from 'express-validator';
 import {sendEmail} from '../utils/sendEmail.js';
 import bcryptjs from 'bcryptjs';
 import jwt from "jsonwebtoken";
-import Token from "../middleware/async.js";
+import Token from "../model/authTokenModel.js";
+import dotenv from "dotenv"
+dotenv.config();
 
 export const SignUp=asyncWrapper(async(req,res,next)=>
 {
