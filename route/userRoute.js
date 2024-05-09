@@ -1,5 +1,5 @@
 
-import {SignIn,SignUp,ResetPassword,ForgotPassword,Validateopt,Logout} from '../Controller/Usercontroller.js';
+import {SignIn,SignUp,ResetPassword,ForgotPassword,Validateopt,Logout} from '../controller/Usercontroller.js';
 import express from 'express';
 import { signUpValidation,signInValidation,otpValidation,resetPasswordValidation,forgotpasswordValidation, } from '../utils/validation.js';
 const route= express.Router();

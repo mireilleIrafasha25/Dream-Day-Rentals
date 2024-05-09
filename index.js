@@ -1,7 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import router from './src/route/index.js';
-import errorHandler from './src/middleware/errorhandler.js';
+import router from './route/index.js';
+import errorHandler from './middleware/errorhandler.js';
 import dotenv from 'dotenv';
 import documentation from "./doc/swagger.json" assert{type:"json"};
 import swaggerUi from "swagger-ui-express"
