@@ -2,7 +2,7 @@
   "name": "dream-day-rentals",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "node index.js",
