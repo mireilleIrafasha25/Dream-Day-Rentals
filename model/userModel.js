@@ -2,7 +2,12 @@ import mongoose from "mongoose";
 const schema=mongoose.Schema
 
 const userSchema=new schema({
-    name:{
+    firstName:{
+        type:String,
+        required:true,
+        unique:true
+    },
+    lastName:{
         type:String,
         required:true,
         unique:true
@@ -15,24 +20,6 @@ const userSchema=new schema({
     password:{
         type:String,
         required:true
-    },
-    role:{
-        type:String,
-        required:true,
-        enum:{
-            values:['admin', 'user'],
-            message:'Role must be admin or user.'
-        },
-        default:'user'
-    },
-    profilePicture:{
-        type:String,
-        required:false
-    },
-    bookingHistory: { type: [String] },
-    ContactInformation:{
-        type:String,
-        required:false
     },
     otp:{
         type:Number,

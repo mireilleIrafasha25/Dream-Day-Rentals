@@ -2,8 +2,8 @@
     "swagger":"2.0",
     "info":
     {
-        "title":"Weeding Planner",
-        "description":"This API Specification for the Weeding Planner service",
+        "title":"Wedding Planner",
+        "description":"This API Specification for the Wedding Planner service",
         "contact":
         {
 "email":"mireilleirafasha@gmail.com"
@@ -34,7 +34,7 @@
     "tags":[
         {
             "name":"Weeding",
-            "description":"Operation pretaining to weeding"
+            "description":"Operation pretaining to wedding"
         }
     ],
     "paths":
@@ -148,49 +148,6 @@
         
     
 }
-        },
-        "/user/logout":{
-            "post":{
-                "tags":["Users"],
-                "summary":"Sign out a user",
-                "description":"Sign out a user",
-                "parameters": [
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/components/schemas/User"
-                        }
-                    }],
-                    "responses":{
-                        "200":{
-                            "description":"User logged out successfully",
-                            "content":{
-                              "application/json":{
-                                "schema":{
-                                  "$ref":"#/components/schemas/User"
-                                }
-                              }
-                            }
-                          },
-                          "400":{
-                            "description":"Bad request -Validation error",
-                            "content":{
-                              "application/json":{
-                                "schema":{
-                                  "type":"object",
-                                  "properties":{
-                                    "message":{
-                                      "type":"string"
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                    }
-            }
         },
         "/user/verify":
     {
@@ -359,10 +316,14 @@
                 "type":"object",
                 "properties":
                 {
-                    "name":{
+                    "firstName":{
                         "type":"string",
                         "description":"name of the User"
                     },
+                    "lastName":{
+                      "type":"string",
+                      "description":"name of the User"
+                  },
                     "email":{
                         "type":"string",
                         "description":"email of the User"
@@ -370,14 +331,8 @@
                     "password":{
                         "type":"string",
                         "description":"password of the User"
-                    },
-                    "role":
-                    {
-                        "type":"string",
-                        "description":"role of the User",
-                        "default":"user"
-
                     }
+                    
                 },
                 "required":["password","email","role","name"]
             }
