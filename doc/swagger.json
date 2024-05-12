@@ -149,7 +149,6 @@
     
 }
         },
-
         "/user/verify":
     {
         "post":{

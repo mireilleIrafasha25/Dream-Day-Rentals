@@ -7,7 +7,8 @@ import documentation from "./doc/swagger.json" assert{type:"json"};
 import swaggerUi from "swagger-ui-express"
 
 
-dotenv.config()
+dotenv.config();
+
 
 
 
