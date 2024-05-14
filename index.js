@@ -14,7 +14,7 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use("/api_docs",swaggerUi.serve, swaggerUi.setup(documentation))
-app.use('/Wedding',router);
+app.use('/Weeding',router);
 mongoose.connect(`${process.env.db}`)
 .then(()=>
 {
