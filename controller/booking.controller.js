@@ -46,11 +46,11 @@ import asyncWrapper from "../middleware/async.js";
           }
     }
 
-    export const findBookingByName = async (req, res, next) => {
-        const service = req.params.serviceName;
+    export const findBookingByCategory = async (req, res, next) => {
+        const serviceCategory = req.params.category;
         
         try {
-            const foundBooking = await bookingModel.find({serviceName: service});
+            const foundBooking = await bookingModel.find({category: serviceCategory});
             return res.status(200).json({
                 size: foundBooking.length,
                 foundBooking

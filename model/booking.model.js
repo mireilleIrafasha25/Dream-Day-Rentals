@@ -12,14 +12,17 @@ const bookingSchema = new Schema({
         required:true,
        
     },
+    category:{
+        type: String,
+        required: true,
+        enum: {
+            values: ["Hall","Tent", "Decoration","Invitation","Photography"],
+            message: "{values} is not a valid service category",
+        },
+    },
     serviceName: {
         type: String,
         require: true,
-        enum: {
-            values: ["Hall","Decoration","Invitation","Photography"],
-            message:"{values} is not a valid service name"
-        },
-        default: "Hall"
     },
     capacity: {
        type: Number,

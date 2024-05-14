@@ -36,6 +36,7 @@ export const testValidation = [
 
 export const addServiceValidation = [
     body("serviceName", "Service name is required").not().isEmpty(),
+    body("category", "Service category name is required").not().isEmpty(),
     body("servicePrice", "Price of the service is required").not().isEmpty(),
     body("availability", "availability of a service is required").not().isEmpty()
 ];
@@ -43,6 +44,6 @@ export const addServiceValidation = [
 export const addNewBookingValidation = [
     body("email", "email is required").not().isEmpty(),
     body("password", "password is required").not().isEmpty(),
-    body("serviceName", "Service name is required").not().isEmpty()
+    body("category", "Service category is required").not().isEmpty()
     
 ];

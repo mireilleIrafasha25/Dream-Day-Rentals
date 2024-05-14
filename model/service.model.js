@@ -6,15 +6,20 @@ const serviceSchema = new Schema (
     serviceName:{
         type: String,
         required: true,
-        enum: {
-            values: ["Hall","Decoration","Invitation","Photography"],
-            message:"{values} is not a valid service name"
-        }
+      
          },
 
     description: {
         type: String,
         required: false
+    },
+    category: {
+        type: String,
+        required: true,
+        enum: {
+            values: ["Hall", "Tent", "Decoration","Invitation","Photography"],
+            message: "{values} is not a valid service category",
+        },
     },
     
     location:{

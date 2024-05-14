@@ -49,11 +49,11 @@ export const test = (req, res, next) => {
           }
     }
 
-    export const findServiceByName = async (req, res, next) => {
-        const Name = req.params.serviceName;
+    export const findServiceCategory = async (req, res, next) => {
+        const serviceCategory = req.params.category;
         
         try {
-            const foundService = await serviceModel.findOne({Name});
+            const foundService = await serviceModel.find({category: serviceCategory});
             return res.status(200).json({
                 size: foundService.length,
                 foundService

@@ -33,7 +33,7 @@
     "schemes":["https","http"],
     "tags":[
         {
-            "name":"Wedding",
+            "name":"Weeding",
             "description":"Operation pretaining to wedding"
         }
     ],
@@ -483,15 +483,15 @@
       }
   }
 },
-"/service/get/{serviceName}":{
+"/service/get/{category}":{
   "get":
   {
       "tags":["Services"],
-      "summary":"Get a book by category",
+      "summary":"Get a service by category",
       "description":"Returns a service with the provided serviceName",
       "parameters":[
           {
-              "name":"serviceName",
+              "name":"category",
               "in":"path",
               "required":true,
               "schema":{
@@ -536,30 +536,65 @@
     "put":
     {
         "tags":["Services"],
-        "summary":"Update a service",
-        "description":"Updates a service with the provided details",
+        "summary": "Update a service",
+        "description": "Updates an existing service with the provided details",
         "parameters":[
-            {
-                "name":"in",
-                "in":"path",
-                "required":true,
-                "schema":{
-                    "type":"string"
-                }
-            }
-        ],
-        "requestBody":{
-            "content":{
-                "application/json":
-                {
-                    "schema":{
-                        "$ref": "#/components/schemas/Services"
-                    }
-                }
+          {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                  "type":"string"
+              }
+          },
+          {
+            "name":"body",
+            "in":"body",
+            "required":true,
+            "schema":{
+              "$ref": "#/components/schemas/Services"
             }
         }
-    }
-},
+      ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Services"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Service updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Services"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found - Service not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
 "/service/delete/{id}":{
   "delete":
   {
@@ -739,15 +774,15 @@
   }
 }
 },
-"/booking/get/{serviceName}":{
+"/booking/get/{category}":{
 "get":
 {
   "tags":["Bookings"],
-  "summary":"Get a booking by serviceName",
+  "summary":"Get a booking by service category",
   "description":"Returns a booking with the provided serviceName",
   "parameters":[
       {
-          "name":"serviceName",
+          "name":"category",
           "in":"path",
           "required":true,
           "schema":{
@@ -796,26 +831,61 @@
     "description":"Updates a booking with the provided details",
     "parameters":[
         {
-            "name":"in",
+            "name":"id",
             "in":"path",
             "required":true,
-            "schema":{
-                "type":"string"
-            }
-        }
+             "type":"string"
+        },
+        {
+          "in":"body",
+          "name":"body",
+          "required": true,
+          "schema":{
+            "$ref": "#/components/schemas/Bookings"
+          }
+          
+
+      }
     ],
-    "requestBody":{
-        "content":{
-            "application/json":
-            {
-                "schema":{
-                    "$ref": "#/components/schemas/Bookings"
-                }
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Bookings"
             }
+          }
         }
+      },
+      "responses": {
+        "200": {
+          "description": "Booking updated successfully",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Bookings"
+              }
+            }
+          }
+        },
+        "404": {
+          "description": "Not Found - Booking not found",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
-}
-},
+  },
 "/booking/delete/{id}":{
 "delete":
 {
@@ -904,17 +974,19 @@
                 {
                     "serviceName":{
                         "type":"string",
-                        "description":"name of the service",
-                        "enum": {
-                          "values": ["Hall","Decoration","Invitation","Photography"],
-                          "message":"{values} is not a valid service name"
-                      },
-                      "default": "Hall"
+                        "description":"name of the service"
                     },
                     "description":{
                         "type":"string",
                         "description":"Summary of what the service is about"
                     },
+                    "category":{
+                       
+                      "type":"string",
+                      "required":true,
+                       "enum":["Hall", "Tent", "Decoration", "Photography", "Invitation"]
+                    },
+
                     "location":{
                         "type":"string",
                         "description":"Different sites to find the service"
@@ -940,7 +1012,7 @@
                     }
 
                 },
-                "required":["serviceName","servicePrice","availability"]
+                "required":["serviceName","category", "servicePrice","availability"]
             },
             "Bookings":
             {
