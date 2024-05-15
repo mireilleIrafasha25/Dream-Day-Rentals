@@ -1,4 +1,4 @@
-import serviceModel from "../Model/service.model.js";
+import serviceModel from "../model/service.model.js";
 import { NotFoundError, BadRequestError } from "../error/index.js";
 import { validationResult } from "express-validator";
 import asyncWrapper from "../middleware/async.js";
