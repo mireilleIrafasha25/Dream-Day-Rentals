@@ -144,7 +144,12 @@
                 }
               }
         
-        }
+        },
+        "security": [
+            {
+              "JWT": [] 
+            }
+          ]
         
     
 }
@@ -901,7 +906,11 @@
                 "type":"object",
                 "properties":
                 {
-                    "name":{
+                    "Firstname":{
+                        "type":"string",
+                        "description":"name of the User"
+                    },
+                    "Lastname":{
                         "type":"string",
                         "description":"name of the User"
                     },
@@ -922,7 +931,15 @@
                     }
                 },
                 "required":["password","email","role","name"]
+
             },
+            "securityDefinitions": {
+                "JWT": {
+                  "type": "apiKey",
+                  "name": "Authorization",
+                  "in": "header"
+                }
+              },
             
             "Services":
             {
@@ -1019,6 +1036,7 @@
                 },
                 "required":["email","password","serviceName"]
             }
+            
         }
     }}
 

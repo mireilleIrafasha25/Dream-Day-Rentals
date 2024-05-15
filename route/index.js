@@ -1,10 +1,7 @@
 
 import userRoute from "./userRoute.js";
 import serviceRoute from "./service.router.js";
-import bookingRoute from "./booking.router.js";
-=======
-
-import userRoute from "../route/userRoute.js";
+import bookingRoute from "./booking.router.js"
 
 import express from "express";
 
