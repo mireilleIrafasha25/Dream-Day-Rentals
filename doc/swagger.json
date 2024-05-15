@@ -483,7 +483,7 @@
       }
   }
 },
-"/service/get/{category}":{
+"/service/getByCategory/{category}":{
   "get":
   {
       "tags":["Services"],
@@ -555,6 +555,7 @@
               "$ref": "#/components/schemas/Services"
             }
         }
+       
       ],
         "requestBody": {
           "required": true,
@@ -774,7 +775,7 @@
   }
 }
 },
-"/booking/get/{category}":{
+"/booking/getByCategory/{category}":{
 "get":
 {
   "tags":["Bookings"],

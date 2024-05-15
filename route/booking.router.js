@@ -6,7 +6,7 @@ import { addNewBookingValidation } from "../utils/validation.js";
 bookingRoute.post("/add", addNewBookingValidation,addNewBooking );
 bookingRoute.get("/list", getAllBookings);
 bookingRoute.get("/get/:id", getBookingById);
-bookingRoute.get("/get/:category", findBookingByCategory);
+bookingRoute.get("/getByCategory/:category", findBookingByCategory);
 bookingRoute.put("/update/:id", updateBooking);
 bookingRoute.delete("/delete/:id", deleteBooking);
 

@@ -5,7 +5,7 @@ const bookingSchema = new Schema({
     email:{
         type: String,
         required: true,
-        unique: true,
+        unique: true
     },
     password: {
         type: String,
@@ -26,7 +26,7 @@ const bookingSchema = new Schema({
     },
     capacity: {
        type: Number,
-       require: true
+       require: false
     },
     duration: {
         type: String,
