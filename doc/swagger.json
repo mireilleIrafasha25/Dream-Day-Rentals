@@ -533,69 +533,68 @@
 },
 "/service/update/{id}":
 {
-    "put":
+"put":
+{
+  "tags":["Services"],
+  "summary":"Update a service",
+  "description": "Updates an existing service with the provided details",
+  "parameters":[
     {
-        "tags":["Services"],
-        "summary": "Update a service",
-        "description": "Updates an existing service with the provided details",
-        "parameters":[
-          {
-              "name":"id",
-              "in":"path",
-              "required":true,
-              "schema":{
-                  "type":"string"
-              }
-          },
-          {
-            "name":"body",
-            "in":"body",
-            "required":true,
-            "schema":{
-              "$ref": "#/components/schemas/Services"
-            }
+      "name":"id",
+      "in":"path",
+      "required":true,
+      "schema":{
+        "type":"string"
+    }
+  },
+  {
+    "name":"body",
+    "in":"body",
+    "required":true,
+    "schema":{
+      "$ref":"#/components/schemas/Services"
+    }
+  }
+  ],
+  "requestBody":{
+    "required":true,
+    "content":{
+      "application/json":{
+        "schema":{
+          "$ref":"#/components/schemas/Services"
         }
-       
-      ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Services"
-              }
-            }
+      }
+    }
+  },
+  "responses":{
+    "200":{
+      "description":"Services updated successfully",
+      "content":{
+        "application/json":{
+          "schema":{
+            "$ref":"#/components/schemas/Services"
           }
-        },
-        "responses": {
-          "200": {
-            "description": "Service updated successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Services"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found - Service not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                }
+        }
+      }
+    },
+    "404":{
+      "description":"Not Found - Service not found",
+      "content":{
+        "application/json":{
+          "schema":{
+            "type":"object",
+            "properties":{
+              "message":{
+                "type":"string"
               }
             }
           }
         }
       }
-    },
+    }
+  }
+}
+},
 "/service/delete/{id}":{
   "delete":
   {
@@ -823,70 +822,7 @@
   }
 }
 },
-"/booking/update/{id}":
-{
-"put":
-{
-    "tags":["Bookings"],
-    "summary":"Update a booking",
-    "description":"Updates a booking with the provided details",
-    "parameters":[
-        {
-            "name":"id",
-            "in":"path",
-            "required":true,
-             "type":"string"
-        },
-        {
-          "in":"body",
-          "name":"body",
-          "required": true,
-          "schema":{
-            "$ref": "#/components/schemas/Bookings"
-          }
-          
 
-      }
-    ],
-      "requestBody": {
-        "required": true,
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Bookings"
-            }
-          }
-        }
-      },
-      "responses": {
-        "200": {
-          "description": "Booking updated successfully",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Bookings"
-              }
-            }
-          }
-        },
-        "404": {
-          "description": "Not Found - Booking not found",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "message": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
 "/booking/delete/{id}":{
 "delete":
 {
