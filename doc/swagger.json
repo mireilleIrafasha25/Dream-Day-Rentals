@@ -930,7 +930,7 @@
 
                     }
                 },
-                "required":["password","email","role","name"]
+                "required":["password","email","role","Firstname","Lastname"]
 
             },
             "securityDefinitions": {

@@ -4,12 +4,13 @@ const schema=mongoose.Schema
 const userSchema=new schema({
     Firstname:{
         type:String,
-        required:true
+        required:false,
+        message:["Please enter your first name"]
         
     },
     Lastname:{
         type:String,
-        required:true
+        required:false
         },
     email:{
         type:String,

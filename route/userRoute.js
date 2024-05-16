@@ -4,7 +4,7 @@ import express from 'express';
 import { signUpValidation,signInValidation,otpValidation,resetPasswordValidation,forgotpasswordValidation, } from '../utils/validation.js';
 import {authenticateToken} from "../middleware/authethicateToken.js"
 const route= express.Router();
-route.post('/signup',signUpValidation,SignUp)
+route.post('/signup',SignUp)
 route.post('/signin',signInValidation,SignIn)
 route.post('/resetpassword',resetPasswordValidation,ResetPassword)
 route.post('/forgotpassword',forgotpasswordValidation,ForgotPassword)
