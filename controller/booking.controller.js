@@ -59,7 +59,7 @@ import asyncWrapper from "../middleware/async.js";
             next(error);
         }
     }
-      /*export const updateBooking = async(req, res, next) => {
+      export const updateBooking = async(req, res, next) => {
         try {
             const updatedBooking = await bookingModel.findByIdAndUpdate(req.params.id, req.body,{set:true});
                if(!updatedBooking) {
@@ -71,7 +71,7 @@ import asyncWrapper from "../middleware/async.js";
             next(error);
         }
 
-    }*/
+    }
     export const deleteBooking = async(req, res, next) => {
         const id =req.params.id;
            
