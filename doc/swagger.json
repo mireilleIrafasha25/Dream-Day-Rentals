@@ -144,12 +144,7 @@
                 }
               }
         
-        },
-        "security": [
-            {
-              "JWT": [] 
-            }
-          ]
+        }
         
     
 }
@@ -931,15 +926,7 @@
                     }
                 },
                 "required":["password","email","role","name"]
-
             },
-            "securityDefinitions": {
-                "JWT": {
-                  "type": "apiKey",
-                  "name": "Authorization",
-                  "in": "header"
-                }
-              },
             
             "Services":
             {
