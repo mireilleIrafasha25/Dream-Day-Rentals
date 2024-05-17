@@ -26,7 +26,7 @@
             "description":"Local server"
         },
         {
-            "url":"https://dream-day-rentals.onrender.com",
+            "url":"https://dream-day-rentals-12.onrender.com",
             "description":"production server"
         }
     ],
@@ -148,49 +148,6 @@
         
     
 }
-        },
-        "/user/logout":{
-            "post":{
-                "tags":["Users"],
-                "summary":"Sign out a user",
-                "description":"Sign out a user",
-                "parameters": [
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/components/schemas/User"
-                        }
-                    }],
-                    "responses":{
-                        "200":{
-                            "description":"User logged out successfully",
-                            "content":{
-                              "application/json":{
-                                "schema":{
-                                  "$ref":"#/components/schemas/User"
-                                }
-                              }
-                            }
-                          },
-                          "400":{
-                            "description":"Bad request -Validation error",
-                            "content":{
-                              "application/json":{
-                                "schema":{
-                                  "type":"object",
-                                  "properties":{
-                                    "message":{
-                                      "type":"string"
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                    }
-            }
         },
         "/user/verify":
     {
@@ -881,7 +838,11 @@
                 "type":"object",
                 "properties":
                 {
-                    "name":{
+                    "Firstname":{
+                        "type":"string",
+                        "description":"name of the User"
+                    },
+                    "Lastname":{
                         "type":"string",
                         "description":"name of the User"
                     },
@@ -999,6 +960,7 @@
                 },
                 "required":["email","password","serviceName"]
             }
+            
         }
     }}
 

@@ -97,15 +97,15 @@ export const SignIn=asyncWrapper(async(req,res,next)=>
 
     };
     //check account verification
-    // if(!FoundUser)
-    // {
-    //     return next(new BadRequestError('Account is not verified'))
-    // }
+     if(FoundUser.verified==false)
+     {
+         return next(new BadRequestError('Account is not verified'))
+    }
     //Verify password
     const isPasswordVerified= await bcryptjs.compareSync(req.body.password,FoundUser.password)
     if(!isPasswordVerified)
     {
-        return next(new BadRequestError('Invalid Email or password'))
+        return next(new BadRequestError('Invalid Password'))
     }
     //Generate token
     const token = jwt.sign({id:FoundUser.id,email:FoundUser.email},process.env.JWT_SECRET_KEY, {expiresIn:'1h'});

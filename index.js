@@ -5,15 +5,16 @@ import errorHandler from './middleware/errorhandler.js';
 import dotenv from 'dotenv';
 import documentation from "./doc/swagger.json" assert{type:"json"};
 import swaggerUi from "swagger-ui-express"
-import cors from 'cors'
-
-
 dotenv.config();
+import cors from "cors"
 
-
-
+const corsOptions ={
+    allowedHeaders: ["Authorization", "Content-Type" ],
+    methods: ["GET", "POST", "PUT", "UPDATE", "DELETE"],
+    origin:[ "http://localhost:5007", "https://dream-day-rentals-12.onrender.com"],
+}
 const app = express();
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use("/api_docs",swaggerUi.serve, swaggerUi.setup(documentation))
 app.use('/Weeding',router);
