@@ -20,12 +20,13 @@ export const SignUp=asyncWrapper(async(req,res,next)=>
         console.log(errors.array());
          next(new BadRequestError(errors.array()[0].msg))
     }
-    // checking  if user is alreeady in using the email
+    // checking  if user is already in using the email
     const FounderUser=await UserModel.findOne({email:req.body.email})
     if(FounderUser)
     {
         return next(new BadRequestError("Email is already in using this email"))
     };
+
     //harshing the user Password
     const hashedPassword = await bcryptjs.hashSync(req.body.password,10);
     //Generating otp generator
