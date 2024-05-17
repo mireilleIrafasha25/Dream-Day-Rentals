@@ -33,7 +33,8 @@ export const SignUp=asyncWrapper(async(req,res,next)=>
     const otpExpirationDate= new Date().getTime()+(60*1000*5);
     //Recording the user to the database
     const newUser= new UserModel({
-        name:req.body.name,
+        Firstname:req.body.Firstname,
+        Lastname:req.body.Lastname,
         email:req.body.email,
         password:hashedPassword,
         otp: otp,
