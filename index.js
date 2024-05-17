@@ -13,10 +13,6 @@ const corsOptions ={
     methods: ["GET", "POST", "PUT", "UPDATE", "DELETE"],
     origin:[ "http://localhost:5007", "https://dream-day-rentals-12.onrender.com"],
 }
-
-
-
-
 const app = express();
 app.use(cors(corsOptions));
 app.use(express.json());

@@ -36,12 +36,12 @@ export const test = (req, res, next) => {
 
     export const getServiceById = async (req, res, next) => {
         try{
-            const foundService = await serviceModel.findById(req.params.id)
-            if (!foundService) {
+            const foundedService = await serviceModel.findById(req.params.id)
+            if (!foundedService) {
                 return next(new NotFoundError(`Service not found`))
             }
             
-              return  res.status(200).json(foundService)
+              return  res.status(200).json(foundedService)
             }
         catch (error) {
             next(error);
@@ -64,7 +64,7 @@ export const test = (req, res, next) => {
     }
       export const updateService = async(req, res, next) => {
         try {
-            const updatedService = await serviceModel.findByIdAndUpdate(req.params.id, req.body,{set:true});
+            const updatedService = await serviceModel.findByIdAndUpdate(req.params.id, req.body,{new:true});
                if(!updatedService) {
                 return next(new NotFoundError(`Service not found`));
                }

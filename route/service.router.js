@@ -6,7 +6,7 @@ serviceRoute.post("/test", testValidation, test);
 serviceRoute.post("/add", addServiceValidation, addNewService);
 serviceRoute.get("/list", getAllServices);
 serviceRoute.get("/get/:id", getServiceById);
-serviceRoute.get("/get/:category", findServiceCategory);
+serviceRoute.get("/getByCategory/:category", findServiceCategory);
 serviceRoute.put("/update/:id", updateService);
 serviceRoute.delete("/delete/:id", deleteService);
 
