@@ -557,9 +557,7 @@
               }
             }
           }
-        }
-      }
-    },
+        },
     "/service/get/{id}": {
       "get": {
         "tags": [
@@ -652,116 +650,7 @@
         }
       }
     },
-    "/service/update/{id}": {
-      "put": {
-        "tags": [
-          "Services"
-        ],
-        "summary": "Update a service",
-        "description": "Updates an existing service with the provided details",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/Services"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Services"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Service updated successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Services"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found - Service not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-"/service/delete/{id}": {
-      "delete": {
-        "tags": [
-          "Services"
-        ],
-        "summary": "Delete a service",
-        "description": "Delete a service with the provided id",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "service deleted",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Services"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Services not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
+
 "/booking/getByCategory/{category}":{
 "get":
 {
@@ -776,6 +665,7 @@
           "schema":{
               "type":"string"
           }
+        }
         ],
         "responses": {
           "200": {
@@ -886,24 +776,7 @@
       }
     },
 
-"/booking/delete/{id}":{
-"delete":
-{
-  "tags":["Bookings"],
-  "summary":"Delete a booking",
-  "description":"Delete a booking with the provided id",
-  "parameters":[
-      {
-          "name":"id",
-          "in":"path",
-          "required":true,
-          "schema":{
-              "type":"string"
 
-          }
-        }
-      }
-    },
     "/booking/get/{id}": {
       "get": {
         "tags": [
