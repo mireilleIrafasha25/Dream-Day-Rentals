@@ -13,6 +13,7 @@ const corsOptions ={
     methods: ["GET", "POST", "PUT", "UPDATE", "DELETE"],
     origin:[ "http://localhost:5007", "https://dream-day-rentals-12.onrender.com"],
 }
+//time seconds
 const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
