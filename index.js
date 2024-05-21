@@ -11,7 +11,7 @@ import cors from "cors"
 const corsOptions ={
     allowedHeaders: ["Authorization", "Content-Type" ],
     methods: ["GET", "POST", "PUT", "UPDATE", "DELETE"],
-    origin:[ "*"],
+    origin:"*",
 }
 //time seconds
 const options = {
