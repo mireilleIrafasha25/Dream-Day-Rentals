@@ -13,12 +13,19 @@ const corsOptions ={
     methods: ["GET", "POST", "PUT", "UPDATE", "DELETE"],
     origin:[ "http://localhost:5007", "https://dream-day-rentals-12.onrender.com"],
 }
+const options = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 30000, // 30 seconds timeout
+    socketTimeoutMS: 45000, // 45 seconds timeout
+    poolSize: 10, // Maintain up to 10 socket connections
+  };
 const app = express();
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use("/api_docs",swaggerUi.serve, swaggerUi.setup(documentation))
 app.use('/Weeding',router);
-mongoose.connect(`${process.env.db}`)
+mongoose.connect(`${process.env.db}`,options)
 .then(()=>
 {
     console.log('connected to db');
