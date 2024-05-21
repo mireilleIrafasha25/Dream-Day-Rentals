@@ -38,6 +38,25 @@
     }
   ],
   "paths": {
+    "/user/Test":{
+      "get":{
+        "tags":["Users"],
+        "summary": "Test",
+        "description": "Test",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/user/signup": {
       "post": {
         "tags": [

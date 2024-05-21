@@ -10,6 +10,9 @@ import jwt from "jsonwebtoken";
 import Token from "../model/authTokenModel.js";
 import dotenv from "dotenv"
 dotenv.config();
+export const test = (req, res, next) => {
+    res.status(200).json({message:'Hello Brides!'});
+}
 
 export const SignUp=asyncWrapper(async(req,res,next)=>
 {
