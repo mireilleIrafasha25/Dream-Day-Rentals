@@ -22,7 +22,7 @@ const options = {
     maxPoolSize: 10, // Maintain up to 10 socket connections
   };
 const app = express();
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 app.use("/api_docs",swaggerUi.serve, swaggerUi.setup(documentation))
 app.use('/Weeding',router);
