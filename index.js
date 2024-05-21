@@ -18,12 +18,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use("/api_docs",swaggerUi.serve, swaggerUi.setup(documentation))
 app.use('/Weeding',router);
-mongoose.connect(`${process.env.db}`,{
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 50000, // Increase the timeout to 50 seconds
-    socketTimeoutMS: 60000, // Increase socket timeout to 60 seconds
-})
+mongoose.connect(`${process.env.db}`)
 .then(()=>
 {
     console.log('connected to db');
