@@ -1,546 +1,101 @@
 {
-    "swagger":"2.0",
-    "info":
-    {
-        "title":"Wedding Planner",
-        "description":"This API Specification for the Weeding Planner service",
-        "contact":
-        {
-"email":"mireilleirafasha@gmail.com"
-        },
-        "license":{
-            "name":"MIT",
-            "url":"http://www.opensource.org/licenses/mit"
-        },
-        "version":"1.0.0"
+  "swagger": "2.0",
+  "info": {
+    "title": "Wedding Planner",
+    "description": "This API Specification for the Weeding Planner service",
+    "contact": {
+      "email": "mireilleirafasha@gmail.com"
     },
-    "externalDocs":
-    {
-        "url":"https://github.com/mireilleIrafasha25/Dream-Day-Rentals.git",
-        "description":"Find more info here"
+    "license": {
+      "name": "MIT",
+      "url": "http://www.opensource.org/licenses/mit"
     },
-    "basePath":"/weeding",
-    "servers":[
-        {
-            "url":"http://localhost:5007",
-            "description":"Local server"
-        },
-        {
-            "url":"https://dream-day-rentals-12.onrender.com",
-            "description":"production server"
-        }
-    ],
-    "schemes":["https","http"],
-    "tags":[
-        {
-            "name":"Weeding",
-            "description":"Operation pretaining to wedding"
-        }
-    ],
-    "paths":
+    "version": "1.0.0"
+  },
+  "externalDocs": {
+    "url": "https://github.com/mireilleIrafasha25/Dream-Day-Rentals.git",
+    "description": "Find more info here"
+  },
+  "basePath": "/weeding",
+  "servers": [
     {
-        "/user/signup":
-        {
-            "post":{
-              "tags":["Users"],
-              "summary":"Create a new user",
-              "description":"Create a new user",
-              "parameters": [
-                {
-                    "name": "body",
-                    "in": "body",
-                    "required": true,
-                    "schema": {
-                        "$ref": "#/components/schemas/User"
-                    }
-                }
-            ],
-              "requestBody":{
-                "content":{
-                  "application/json":{
-                    "schema":{
-                      "$ref":"#/components/schemas/User"
-                    }
-                  }
-                }
-              },
-              "responses":{
-                "201":{
-                  "description":"User created",
-                  "content":{
-                    "application/json":{
-                      "schema":{
-                        "$ref":"#/components/schemas/User"
-                      }
-                    }
-                  }
-                },
-                "400":{
-                  "description":"Bad request -Validation error",
-                  "content":{
-                    "application/json":{
-                      "schema":{
-                        "type":"object",
-                        "properties":{
-                          "message":{
-                            "type":"string"
-                          }
-                        }
-                      }
-                    }
-                  }
+      "url": "http://localhost:5007",
+      "description": "Local server"
+    },
+    {
+      "url": "https://dream-day-rentals-12.onrender.com",
+      "description": "production server"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "tags": [
+    {
+      "name": "Weeding",
+      "description": "Operation pretaining to wedding"
+    }
+  ],
+  "paths": {
+    "/user/Test":{
+      "get":{
+        "tags":["Users"],
+        "summary": "Test",
+        "description": "Test",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
                 }
               }
             }
-        },
-        "/user/signin":
-        {
-            "post":{
-      "tags":["Users"],
-      "summary":"Sign in a user",
-      "description":"Sign in a user",
-      "parameters": [
-        {
+          }
+        }
+      }
+    },
+    "/user/signup": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create a new user",
+        "description": "Create a new user",
+        "parameters": [
+          {
             "name": "body",
             "in": "body",
             "required": true,
             "schema": {
-                "$ref": "#/components/schemas/User"
+              "$ref": "#/components/schemas/User"
             }
-        }],
-        "requestBody":{
-            "content":{
-                "application/json":{
-                    "schema":{
-                        "$ref":"#/components/schemas/User"
-                    }
-                }
-            }
-        },
-        "responses":{
-            "200":{
-                "description":"User logged in successfully",
-                "content":{
-                  "application/json":{
-                    "schema":{
-                      "$ref":"#/components/schemas/User"
-                    }
-                  }
-                }
-              },
-              "400":{
-                "description":"Bad request -Validation error",
-                "content":{
-                  "application/json":{
-                    "schema":{
-                      "type":"object",
-                      "properties":{
-                        "message":{
-                          "type":"string"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-        
-        },
-        "security": [
-            {
-              "JWT": [] 
-            }
-          ]
-        
-    
-}
-        },
-        "/user/verify":
-    {
-        "post":{
-            "tags":["Users"],
-            "summary":"Verify a user",
-            "description":"Verify a user",
-            "parameters": [
-                {
-                    "name": "body",
-                    "in": "body",
-                    "required": true,
-                    "schema": {
-                        "$ref": "#/components/schemas/User"
-                    }
-                }],
-                "requestBody":{
-
-                    "content":{
-                        "application/json":{
-                            "schema":{
-                                "$ref":"#/components/schemas/User"
-                            }
-                        }
-                    }
-                },
-                "responses":{
-                    "200":{
-                        "description":"Otp was verified",
-                        "content":{
-                          "application/json":{
-                            "schema":{
-                              "$ref":"#/components/schemas/User"
-                            }
-                          }
-                        }
-                      },
-                      "400":{
-                        "description":"Bad request -Validation error",
-                        "content":{
-                          "application/json":{
-                            "schema":{
-                              "type":"object",
-                              "properties":{
-                                "message":{
-                                  "type":"string"
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                }
-        }
-    },
-    "/user/forgotpassword":
-    {
-        "post":{
-        "tags":["Users"],
-        "summary":"Forgot password",
-        "description":"Forgot password",
-        "parameters": [
-            {
-                "name": "body",
-                "in": "body",
-                "required": true,
-                "schema": {
-                    "$ref": "#/components/schemas/User"
-                }
-            }],
-            "requestBody":{
-                "content":{
-                    "application/json":{
-                        "schema":{
-                            "$ref":"#/components/schemas/User"
-                        }
-                    }
-                }
-            },
-            "responses":{
-                "200":{
-                    "description":"Forgot password was successfully",
-                    "content":{
-                      "application/json":{
-                        "schema":{
-                          "$ref":"#/components/schemas/User"
-                        }
-                      }
-                    }
-                  },
-                  "400":{
-                    "description":"Bad request -Validation error",
-                    "content":{
-                      "application/json":{
-                        "schema":{
-                          "type":"object",
-                          "properties":{
-                            "message":{
-                              "type":"string"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-            }
-    }
-},
-    "/user/resetpassword":{
-        "post":{
-            "tags":["Users"],
-            "summary":"Reset password",
-            "description":"Reset password",
-            "parameters": [
-                {
-                    "name": "body",
-                    "in": "body",
-                    "required": true,
-                    "schema": {
-                        "$ref": "#/components/schemas/User"
-                    }
-                }],
-                "requestBody":{
-                    "content":{
-                        "application/json":{
-                            "schema":{
-                                "$ref":"#/components/schemas/User"
-                            }
-                        }
-                    }
-                },
-                "responses":{
-                    "200":{
-                        "description":"Password was reset successfully",
-                        "content":{
-                          "application/json":{
-                            "schema":{
-                              "$ref":"#/components/schemas/User"
-                            }
-                          }
-                        }
-                      },
-                      "400":{
-                        "description":"Bad request -Validation error",
-                        "content":{
-                          "application/json":{
-                            "schema":{
-                              "type":"object",
-                              "properties":{
-                                "message":{
-                                  "type":"string"
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                }
-        }
-    },
-    "/service/add":{
-      "post":
-{
-    "tags":["Services"],
-    "summary":"Add a new service",
-    "description":"add a new service with  the provided details",
-    "parameters":[
-        {
-            "name":"body",
-            "in":"body",
-            "required":true,
-          
-            "schema":{"$ref":"#/components/schemas/Services" }
-        }
-    ],
-    "requestBody":{
-        "content":{
-            "application/json":
-            {
-                "schema":{
-                    "$ref": "#/components/schemas/Services"
-                }
-            }
-        }
-    },
-    "responses":{
-        "201":
-        {
-            "description":"Service added successfully",
-            "content":{
-                "application/json":
-                {
-                    "schema":{
-                        "$ref":"#/components/schemas/Services"
-                    }
-                }
-            }
-        },
-        "400":
-        {
-            "description":"Bad request -Validation error",
-            "content":{
-                "application/json":{
-                    "schema":{
-                        "type": "object",
-                        "properties":{
-                            "message":{
-                                "type":"string"
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-},
-"/service/list":
-{
-    "get":
-    {
-        "tags":["Services"],
-        "summary":"Get all servicess",
-        "description":"Returns all the servicess",
-        "responses":{
-            "200":
-            {
-                "description":"All the servicess",
-                "content":{
-                    "application/json":
-                    {
-                        "schema":{
-                            "type":"array",
-                            "items":{
-                                "$ref":"#/components/schemas/Services"
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-},
-"/service/get/{id}":{
-  "get":
-  {
-      "tags":["Services"],
-      "summary":"Get a service by id",
-      "description":"Returns a service with the provided id",
-      "parameters":[
-          {
-              "name":"id",
-              "in":"path",
-              "required":true,
-              "schema":{
-                  "type":"string"
-              }
           }
-      ],
-      "responses":{
-          "200":
-          {
-              "description":"service found",
-              "content":{
-                  "application/json":
-                  {
-                      "schema":{
-                          "$ref":"#/components/schemas/Services"
-                      }
-                  }
-              }
-          },
-          "404":
-          {
-              "description":"service  not found",
-              "content":{
-                  "application/json":{
-                      "schema":{
-                          "type": "object",
-                          "properties":{
-                              "message":{
-                                  "type":"string"
-                              }
-                          }
-                      }
-                  }
-              }
-          }
-      }
-  }
-},
-"/service/get/{category}":{
-  "get":
-  {
-      "tags":["Services"],
-      "summary":"Get a service by category",
-      "description":"Returns a service with the provided serviceName",
-      "parameters":[
-          {
-              "name":"category",
-              "in":"path",
-              "required":true,
-              "schema":{
-                  "type":"string"
-              }
-          }
-      ],
-      "responses":{
-          "200":
-          {
-              "description":"services found",
-              "content":{
-                  "application/json":
-                  {
-                      "schema":{
-                          "$ref":"#/components/schemas/Services"
-                      }
-                  }
-              }
-          },
-          "404":
-          {
-              "description":"services not found",
-              "content":{
-                  "application/json":{
-                      "schema":{
-                          "type": "object",
-                          "properties":{
-                              "message":{
-                                  "type":"string"
-                              }
-                          }
-                      }
-                  }
-              }
-          }
-      }
-  }
-},
-"/service/update/{id}":
-{
-    "put":
-    {
-        "tags":["Services"],
-        "summary": "Update a service",
-        "description": "Updates an existing service with the provided details",
-        "parameters":[
-          {
-              "name":"id",
-              "in":"path",
-              "required":true,
-              "schema":{
-                  "type":"string"
-              }
-          },
-          {
-            "name":"body",
-            "in":"body",
-            "required":true,
-            "schema":{
-              "$ref": "#/components/schemas/Services"
-            }
-        }
-      ],
+        ],
         "requestBody": {
-          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Services"
+                "$ref": "#/components/schemas/User"
               }
             }
           }
         },
         "responses": {
-          "200": {
-            "description": "Service updated successfully",
+          "201": {
+            "description": "User created",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Services"
+                  "$ref": "#/components/schemas/User"
                 }
               }
             }
           },
-          "404": {
-            "description": "Not Found - Service not found",
+          "400": {
+            "description": "Bad request -Validation error",
             "content": {
               "application/json": {
                 "schema": {
@@ -557,6 +112,423 @@
         }
       }
     },
+    "/user/signin": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Sign in a user",
+        "description": "Sign in a user",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User logged in successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request -Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/verify": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Verify a user",
+        "description": "Verify a user",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Otp was verified",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request -Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/forgotpassword": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Forgot password",
+        "description": "Forgot password",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Forgot password was successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request -Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/resetpassword": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Reset password",
+        "description": "Reset password",
+        "parameters": [
+            {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Password was reset successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request -Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+  }
+},
+"/service/getByCategory/{category}":{
+  "get":
+  {
+      "tags":["Services"],
+      "summary":"Get a service by category",
+      "description":"Returns a service with the provided serviceName",
+      "parameters":[
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Password was reset successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request -Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/service/add": {
+      "post": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "Add a new service",
+        "description": "add a new service with  the provided details",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Services"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Services"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Service added successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Services"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request -Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+"/service/list": {
+      "get": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "Get all servicess",
+        "description": "Returns all the servicess",
+        "responses": {
+          "200": {
+            "description": "All the servicess",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Services"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+"/service/update/{id}":
+{
+"put":
+{
+  "tags":["Services"],
+  "summary":"Update a service",
+  "description": "Updates an existing service with the provided details",
+  "parameters":[
+    {
+      "name":"id",
+      "in":"path",
+      "required":true,
+      "schema":{
+        "type":"string"
+    }
+  },
+  {
+    "name":"body",
+    "in":"body",
+    "required":true,
+    "schema":{
+      "$ref":"#/components/schemas/Services"
+    }
+  }
+  ],
+  "requestBody":{
+    "required":true,
+    "content":{
+      "application/json":{
+        "schema":{
+          "$ref":"#/components/schemas/Services"
+        }
+      }
+    }
+  },
+  "responses":{
+    "200":{
+      "description":"Services updated successfully",
+      "content":{
+        "application/json":{
+          "schema":{
+            "$ref":"#/components/schemas/Services"
+          }
+        }
+      }
+    },
+    "404":{
+      "description":"Not Found - Service not found",
+      "content":{
+        "application/json":{
+          "schema":{
+            "type":"object",
+            "properties":{
+              "message":{
+                "type":"string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+},
 "/service/delete/{id}":{
   "delete":
   {
@@ -600,143 +572,105 @@
                           }
                       }
                   }
-              }
-          }
-      }
-  }
-},
-"/booking/add":{
-  "post":
-{
-"tags":["Bookings"],
-"summary":"Add a new booking",
-"description":"add a new booking with  the provided details",
-"parameters":[
-    {
-        "name":"body",
-        "in":"body",
-        "required":true,
-        "schema":{"$ref":"#/components/schemas/Bookings"}
-    }
-],
-"requestBody":{
-    "content":{
-        "application/json":
-        {
-            "schema":{
-                "$ref": "#/components/schemas/Bookings"
-            }
-        }
-    }
-},
-"responses":{
-    "201":
-    {
-        "description":"Booking done successfully",
-        "content":{
-            "application/json":
-            {
-                "schema":{
-                    "$ref":"#/components/schemas/Bookings"
                 }
+              }
             }
+          }
+        },
+    "/service/get/{id}": {
+      "get": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "Get a service by id",
+        "description": "Returns a service with the provided id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "service found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Services"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "service  not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
+      }
     },
-    "400":
-    {
-        "description":"Bad request -Validation error",
-        "content":{
-            "application/json":{
-                "schema":{
-                    "type": "object",
-                    "properties":{
-                        "message":{
-                            "type":"string"
-                        }
-                    }
-                }
+    "/service/get/{category}": {
+      "get": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "Get a service by category",
+        "description": "Returns a service with the provided serviceName",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "services found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Services"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "services not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
-    }
-}
-}
+      }
+    },
 
-},
-"/booking/list":
-{
-"get":
-{
-    "tags":["Bookings"],
-    "summary":"Get all bookings",
-    "description":"Returns all the bookings",
-    "responses":{
-        "200":
-        {
-            "description":"All the bookings",
-            "content":{
-                "application/json":
-                {
-                    "schema":{
-                        "type":"array",
-                        "items":{
-                            "$ref":"#/components/schemas/Bookings"
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-},
-"/booking/get/{id}":{
-"get":
-{
-  "tags":["Bookings"],
-  "summary":"Get a service by id",
-  "description":"Returns a booking with the provided id",
-  "parameters":[
-      {
-          "name":"id",
-          "in":"path",
-          "required":true,
-          "schema":{
-              "type":"string"
-          }
-      }
-  ],
-  "responses":{
-      "200":
-      {
-          "description":"booking found",
-          "content":{
-              "application/json":
-              {
-                  "schema":{
-                      "$ref":"#/components/schemas/Bookings"
-                  }
-              }
-          }
-      },
-      "404":
-      {
-          "description":"booking  not found",
-          "content":{
-              "application/json":{
-                  "schema":{
-                      "type": "object",
-                      "properties":{
-                          "message":{
-                              "type":"string"
-                          }
-                      }
-                  }
-              }
-          }
-      }
-  }
-}
-},
-"/booking/get/{category}":{
+"/booking/getByCategory/{category}":{
 "get":
 {
   "tags":["Bookings"],
@@ -750,78 +684,55 @@
           "schema":{
               "type":"string"
           }
-      }
-  ],
-  "responses":{
-      "200":
-      {
-          "description":"booking found",
-          "content":{
-              "application/json":
-              {
-                  "schema":{
-                      "$ref":"#/components/schemas/Bookings"
-                  }
+        }
+        ],
+        "responses": {
+          "200": {
+            "description": "service deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Services"
+                }
               }
-          }
-      },
-      "404":
-      {
-          "description":"booking not found",
-          "content":{
-              "application/json":{
-                  "schema":{
-                      "type": "object",
-                      "properties":{
-                          "message":{
-                              "type":"string"
-                          }
-                      }
+            }
+          },
+          "404": {
+            "description": "Services not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
                   }
+                }
               }
+            }
           }
+        }
       }
-  }
-}
-},
-"/booking/update/{id}":
-{
-"put":
-{
-    "tags":["Bookings"],
-    "summary":"Update a booking",
-    "description":"Updates a booking with the provided details",
-    "parameters":[
-        {
-            "name":"id",
-            "in":"path",
-            "required":true,
-             "type":"string"
-        },
-        {
-          "in":"body",
-          "name":"body",
-          "required": true,
-          "schema":{
-            "$ref": "#/components/schemas/Bookings"
-          }
-          
-
-      }
-    ],
-      "requestBody": {
-        "required": true,
-        "content": {
-          "application/json": {
+    },
+    "/booking/add": {
+      "post": {
+        "tags": [
+          "Bookings"
+        ],
+        "summary": "Add a new booking",
+        "description": "add a new booking with  the provided details",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
             "schema": {
               "$ref": "#/components/schemas/Bookings"
             }
           }
-        }
-      },
-      "responses": {
-        "200": {
-          "description": "Booking updated successfully",
+        ],
+        "requestBody": {
           "content": {
             "application/json": {
               "schema": {
@@ -830,15 +741,253 @@
             }
           }
         },
-        "404": {
-          "description": "Not Found - Booking not found",
+        "responses": {
+          "201": {
+            "description": "Booking done successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Bookings"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request -Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+"/booking/list": {
+      "get": {
+        "tags": [
+          "Bookings"
+        ],
+        "summary": "Get all bookings",
+        "description": "Returns all the bookings",
+        "responses": {
+          "200": {
+            "description": "All the bookings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Bookings"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+
+    "/booking/get/{id}": {
+      "get": {
+        "tags": [
+          "Bookings"
+        ],
+        "summary": "Get a service by id",
+        "description": "Returns a booking with the provided id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "booking found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Bookings"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "booking  not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/booking/get/{category}": {
+      "get": {
+        "tags": [
+          "Bookings"
+        ],
+        "summary": "Get a booking by service category",
+        "description": "Returns a booking with the provided serviceName",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "booking found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Bookings"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "booking not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/booking/update/{id}": {
+      "put": {
+        "tags": [
+          "Bookings"
+        ],
+        "summary": "Update a booking",
+        "description": "Updates a booking with the provided details",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Bookings"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "message": {
-                    "type": "string"
+                "$ref": "#/components/schemas/Bookings"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Booking updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Bookings"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found - Booking not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/booking/delete/{id}": {
+      "delete": {
+        "tags": [
+          "Bookings"
+        ],
+        "summary": "Delete a booking",
+        "description": "Delete a booking with the provided id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Booking deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Bookings"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Bookings not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
                   }
                 }
               }
@@ -848,195 +997,138 @@
       }
     }
   },
-"/booking/delete/{id}":{
-"delete":
-{
-  "tags":["Bookings"],
-  "summary":"Delete a booking",
-  "description":"Delete a booking with the provided id",
-  "parameters":[
-      {
-          "name":"id",
-          "in":"path",
-          "required":true,
-          "schema":{
-              "type":"string"
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "Firstname": {
+            "type": "string",
+            "description": "name of the User"
+          },
+          "Lastname": {
+            "type": "string",
+            "description": "name of the User"
+          },
+          "email": {
+            "type": "string",
+            "description": "email of the User"
+          },
+          "password": {
+            "type": "string",
+            "description": "password of the User"
+          },
+          "role": {
+            "type": "string",
+            "description": "role of the User",
+            "default": "user"
           }
-      }
-  ],
-  "responses":{
-      "200":
-      {
-          "description":"Booking deleted",
-          "content":{
-              "application/json":
-              {
-                  "schema":{
-                      "$ref":"#/components/schemas/Bookings"
-                  }
-              }
-          }
+        },
+        "required": [
+          "Firstname",
+          "Lastname",
+          "password",
+          "email",
+          "role"
+        ]
       },
-      "404":
-      {
-          "description":"Bookings not found",
-          "content":{
-              "application/json":{
-                  "schema":{
-                      "type": "object",
-                      "properties":{
-                          "message":{
-                              "type":"string"
-                          }
-                      }
-                  }
-              }
+      "Services": {
+        "type": "object",
+        "properties": {
+          "serviceName": {
+            "type": "string",
+            "description": "name of the service"
+          },
+          "description": {
+            "type": "string",
+            "description": "Summary of what the service is about"
+          },
+          "category": {
+            "type": "string",
+            "required": true,
+            "enum": [
+              "Hall",
+              "Tent",
+              "Decoration",
+              "Photography",
+              "Invitation"
+            ]
+          },
+          "location": {
+            "type": "string",
+            "description": "Different sites to find the service"
+          },
+          "phoneNumber": {
+            "type": "number",
+            "description": "call for more information about the service"
+          },
+          "servicePrice": {
+            "type": "number",
+            "description": "Amount to pay to get the service"
+          },
+          "availability": {
+            "type": "boolean",
+            "description": "Inform if the service is available or not"
           }
+        },
+        "required": [
+          "serviceName",
+          "category",
+          "servicePrice",
+          "availability"
+        ]
+      },
+      "Bookings": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "email of the user"
+          },
+          "password": {
+            "type": "string",
+            "description": "pin to signin your account"
+          },
+          "serviceName": {
+            "type": "string",
+            "description": "Name of the service to be booked",
+            "enum": {
+              "values": [
+                "Hall",
+                "Decoration",
+                "Invitation",
+                "Photography"
+              ],
+              "message": "{values} is not a valid service name"
+            },
+            "default": "Hall"
+          },
+          "capacity": {
+            "type": "number",
+            "description": "number of attending people or quantity of service needed"
+          },
+          "duration": {
+            "type": "number",
+            "description": "Amount to pay to get the service",
+            "enum": {
+              "values": [
+                "Part-time",
+                "Full-time"
+              ],
+              "message": "{values} is not a valid duration"
+            }
+          },
+          "paymentMethod": {
+            "type": "string",
+            "description": "Your choice of payment"
+          }
+        },
+        "required": [
+          "email",
+          "password",
+          "serviceName"
+        ]
       }
+    }
   }
 }
-}
-    },
-        
-    "components":{
-        "schemas":
-        {
-            "User":
-            {
-                "type":"object",
-                "properties":
-                {
-                    "Firstname":{
-                        "type":"string",
-                        "description":"name of the User"
-                    },
-                    "Lastname":{
-                        "type":"string",
-                        "description":"name of the User"
-                    },
-                    "email":{
-                        "type":"string",
-                        "description":"email of the User"
-                    },
-                    "password":{
-                        "type":"string",
-                        "description":"password of the User"
-                    },
-                    "role":
-                    {
-                        "type":"string",
-                        "description":"role of the User",
-                        "default":"user"
-
-                    }
-                },
-                "required":["password","email","role","Firstname","Lastname"]
-
-            },
-            "securityDefinitions": {
-                "JWT": {
-                  "type": "apiKey",
-                  "name": "Authorization",
-                  "in": "header"
-                }
-              },
-            
-            "Services":
-            {
-                "type":"object",
-                "properties":
-                {
-                    "serviceName":{
-                        "type":"string",
-                        "description":"name of the service"
-                    },
-                    "description":{
-                        "type":"string",
-                        "description":"Summary of what the service is about"
-                    },
-                    "category":{
-                       
-                      "type":"string",
-                      "required":true,
-                       "enum":["Hall", "Tent", "Decoration", "Photography", "Invitation"]
-                    },
-
-                    "location":{
-                        "type":"string",
-                        "description":"Different sites to find the service"
-                    },
-                    "phoneNumber":
-                    {
-                        "type":"number",
-                        "description":"call for more information about the service"
-                    },
-                    "servicePrice":
-                    {
-                        "type":"number",
-                        "description":"Amount to pay to get the service"
-                       
-
-                    },
-                    "availability":
-                    {
-                        "type":"boolean",
-                        "description":"Inform if the service is available or not"
-                      
-
-                    }
-
-                },
-                "required":["serviceName","category", "servicePrice","availability"]
-            },
-            "Bookings":
-            {
-                "type":"object",
-                "properties":
-                {
-                    "email":{
-                        "type":"string",
-                        "description":"email of the user"
-                    },
-                    "password":{
-                        "type":"string",
-                        "description":"pin to signin your account"
-                    },
-                    "serviceName":{
-                        "type":"string",
-                        "description":"Name of the service to be booked",
-                        "enum": {
-                          "values": ["Hall","Decoration","Invitation","Photography"],
-                          "message":"{values} is not a valid service name"
-                      },
-                      "default": "Hall"
-                    },
-                    "capacity":
-                    {
-                        "type":"number",
-                        "description":"number of attending people or quantity of service needed"
-                    },
-                    "duration":
-                    {
-                        "type":"number",
-                        "description":"Amount to pay to get the service",
-                        "enum": {
-                          "values": ["Part-time", "Full-time"],
-                         "message":"{values} is not a valid duration"
-                      }
-                      
-                    },
-                    "paymentMethod":
-                    {
-                        "type":"string",
-                        "description":"Your choice of payment"
-                      
-
-                    }
-
-                },
-                "required":["email","password","serviceName"]
-            }
-            
-        }
-    }}
-

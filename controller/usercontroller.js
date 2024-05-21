@@ -10,6 +10,9 @@ import jwt from "jsonwebtoken";
 import Token from "../model/authTokenModel.js";
 import dotenv from "dotenv"
 dotenv.config();
+export const test = (req, res, next) => {
+    res.status(200).json({message:'Hello Brides!'});
+}
 
 export const SignUp=asyncWrapper(async(req,res,next)=>
 {
@@ -20,12 +23,13 @@ export const SignUp=asyncWrapper(async(req,res,next)=>
         console.log(errors.array());
          next(new BadRequestError(errors.array()[0].msg))
     }
-    // checking  if user is alreeady in using the email
+    // checking  if user is already in using the email
     const FounderUser=await UserModel.findOne({email:req.body.email})
     if(FounderUser)
     {
         return next(new BadRequestError("Email is already in using this email"))
     };
+
     //harshing the user Password
     const hashedPassword = await bcryptjs.hashSync(req.body.password,10);
     //Generating otp generator
@@ -162,7 +166,7 @@ export const ForgotPassword=asyncWrapper(async(req,res,next)=>
         user:FoundUser._id,
         expirationDate:new Date().getTime()+ (60*1000*5),
     });
-    const link=`http://localhost:8080/reset-password?token=${token}&id=${FoundUser.id}`;
+    const link=`https://localhost:8080/reset-password?token=${token}&id=${FoundUser.id}`;
     const emailBody=`click on the link below  to reset your password \n\n${link}`;
     await sendEmail(req.body.email,"Reset your password",emailBody);
 

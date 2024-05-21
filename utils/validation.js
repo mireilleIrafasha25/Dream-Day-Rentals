@@ -15,10 +15,12 @@ export const otpValidation=[
 ];
 
 export const signUpValidation=[
+    body("Firstname","Firstname is required").not().isEmpty(),
+    body("Lastname","Lastname is required").not().isEmpty(),
     body("email","Email is required").not().isEmpty(),
     body("email","Invalid email").isEmail(),
     body("password","password is required").not().isEmpty(),
-    body("password","Password  should contain atleast 8 characters,uppercase and lower case letters,numbers and symbols").isStrongPassword()
+    body("password","Password  should contain atleast 8 characters,uppercase and lower case letters,numbers and symbols").isStrongPassword(),
 ];
 
 export const signInValidation=[
@@ -44,6 +46,6 @@ export const addServiceValidation = [
 export const addNewBookingValidation = [
     body("email", "email is required").not().isEmpty(),
     body("password", "password is required").not().isEmpty(),
-    body("category", "Service category is required").not().isEmpty()
-    
+    body("category", "Service category is required").not().isEmpty(),
+    body("serviceName", "Service name is required").not().isEmpty()
 ];

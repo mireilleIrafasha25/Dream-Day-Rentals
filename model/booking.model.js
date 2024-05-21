@@ -5,7 +5,7 @@ const bookingSchema = new Schema({
     email:{
         type: String,
         required: true,
-        unique: true,
+        unique: true
     },
     password: {
         type: String,
@@ -26,7 +26,7 @@ const bookingSchema = new Schema({
     },
     capacity: {
        type: Number,
-       require: true
+       require: false
     },
     duration: {
         type: String,
@@ -42,6 +42,18 @@ const bookingSchema = new Schema({
     }
 
 
+},
+{
+    toJSON: {
+        transform: (doc, ret) => {
+            ret.id = ret._id;
+            delete ret._id;
+            delete ret.__v;
+            delete ret.password;
+            return ret;
+        }
+    },
+    timestamps: true,
 });
  
 const booking =model('booking', bookingSchema)
