@@ -313,7 +313,60 @@
         }
   }
 },
-
+"/service/getByCategory/{category}":{
+  "get":
+  {
+      "tags":["Services"],
+      "summary":"Get a service by category",
+      "description":"Returns a service with the provided serviceName",
+      "parameters":[
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Password was reset successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request -Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/service/add": {
       "post": {
         "tags": [
@@ -393,6 +446,118 @@
         }
       }
     },
+"/service/update/{id}":
+{
+"put":
+{
+  "tags":["Services"],
+  "summary":"Update a service",
+  "description": "Updates an existing service with the provided details",
+  "parameters":[
+    {
+      "name":"id",
+      "in":"path",
+      "required":true,
+      "schema":{
+        "type":"string"
+    }
+  },
+  {
+    "name":"body",
+    "in":"body",
+    "required":true,
+    "schema":{
+      "$ref":"#/components/schemas/Services"
+    }
+  }
+  ],
+  "requestBody":{
+    "required":true,
+    "content":{
+      "application/json":{
+        "schema":{
+          "$ref":"#/components/schemas/Services"
+        }
+      }
+    }
+  },
+  "responses":{
+    "200":{
+      "description":"Services updated successfully",
+      "content":{
+        "application/json":{
+          "schema":{
+            "$ref":"#/components/schemas/Services"
+          }
+        }
+      }
+    },
+    "404":{
+      "description":"Not Found - Service not found",
+      "content":{
+        "application/json":{
+          "schema":{
+            "type":"object",
+            "properties":{
+              "message":{
+                "type":"string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+},
+"/service/delete/{id}":{
+  "delete":
+  {
+      "tags":["Services"],
+      "summary":"Delete a service",
+      "description":"Delete a service with the provided id",
+      "parameters":[
+          {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                  "type":"string"
+              }
+          }
+      ],
+      "responses":{
+          "200":
+          {
+              "description":"service deleted",
+              "content":{
+                  "application/json":
+                  {
+                      "schema":{
+                          "$ref":"#/components/schemas/Services"
+                      }
+                  }
+              }
+          },
+          "404":
+          {
+              "description":"Services not found",
+              "content":{
+                  "application/json":{
+                      "schema":{
+                          "type": "object",
+                          "properties":{
+                              "message":{
+                                  "type":"string"
+                              }
+                          }
+                      }
+                  }
+                }
+              }
+            }
+          }
+        },
     "/service/get/{id}": {
       "get": {
         "tags": [
@@ -439,98 +604,26 @@
         }
       }
     },
-    "/service/getByCategory/{category}":{
-      "get":
-      {
-          "tags":["Services"],
-          "summary":"Get a service by category",
-          "description":"Returns a service with the provided category",
-          "parameters":[
-              {
-                "name": "category",
-                "in": "path",
-                "required": true,
-                "schema": {
-                  "$ref": "#/components/schemas/Services"
-                }
-              }
-            ],
-            "requestBody": {
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Services"
-                  }
-                }
-              }
-            },
-            "responses": {
-              "200": {
-                "description": "Password was reset successfully",
-                "content": {
-                  "application/json": {
-                    "schema": {
-                      "$ref": "#/components/schemas/Services"
-                    }
-                  }
-                }
-              },
-              "400": {
-                "description": "Bad request -Validation error",
-                "content": {
-                  "application/json": {
-                    "schema": {
-                      "type": "object",
-                      "properties": {
-                        "message": {
-                          "type": "string"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-    "/service/update/{id}": {
-      "put": {
+    "/service/get/{category}": {
+      "get": {
         "tags": [
           "Services"
         ],
-        "summary": "Update a service",
-        "description": "Updates an existing service with the provided details",
+        "summary": "Get a service by category",
+        "description": "Returns a service with the provided serviceName",
         "parameters": [
           {
-            "name": "id",
+            "name": "category",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/Services"
-            }
           }
         ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Services"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
-            "description": "Service updated successfully",
+            "description": "services found",
             "content": {
               "application/json": {
                 "schema": {
@@ -540,7 +633,7 @@
             }
           },
           "404": {
-            "description": "Not Found - Service not found",
+            "description": "services not found",
             "content": {
               "application/json": {
                 "schema": {
@@ -557,22 +650,22 @@
         }
       }
     },
-"/service/delete/{id}": {
-      "delete": {
-        "tags": [
-          "Services"
-        ],
-        "summary": "Delete a service",
-        "description": "Delete a service with the provided id",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+
+"/booking/getByCategory/{category}":{
+"get":
+{
+  "tags":["Bookings"],
+  "summary":"Get a booking by service category",
+  "description":"Returns a booking with the provided serviceName",
+  "parameters":[
+      {
+          "name":"category",
+          "in":"path",
+          "required":true,
+          "schema":{
+              "type":"string"
           }
+        }
         ],
         "responses": {
           "200": {
@@ -603,7 +696,6 @@
         }
       }
     },
-
     "/booking/add": {
       "post": {
         "tags": [
@@ -684,12 +776,13 @@
       }
     },
 
+
     "/booking/get/{id}": {
       "get": {
         "tags": [
           "Bookings"
         ],
-        "summary": "Get a booking by id",
+        "summary": "Get a service by id",
         "description": "Returns a booking with the provided id",
         "parameters": [
           {
@@ -730,60 +823,52 @@
         }
       }
     },
-    "/booking/getByCategory/{category}":{
-      "get":
-      {
-          "tags":["Bookings"],
-          "summary":"Get a bookings by category",
-          "description":"Returns a booking with the provided category",
-          "parameters":[
-              {
-                "name": "category",
-                "in": "path",
-                "required": true,
+    "/booking/get/{category}": {
+      "get": {
+        "tags": [
+          "Bookings"
+        ],
+        "summary": "Get a booking by service category",
+        "description": "Returns a booking with the provided serviceName",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "booking found",
+            "content": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Bookings"
                 }
               }
-            ],
-            "requestBody": {
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Bookings"
-                  }
-                }
-              }
-            },
-            "responses": {
-              "200": {
-                "description": "Booking  found successfully",
-                "content": {
-                  "application/json": {
-                    "schema": {
-                      "$ref": "#/components/schemas/Services"
-                    }
-                  }
-                }
-              },
-              "400": {
-                "description": "Bad request -Validation error",
-                "content": {
-                  "application/json": {
-                    "schema": {
-                      "type": "object",
-                      "properties": {
-                        "message": {
-                          "type": "string"
-                        }
-                      }
+            }
+          },
+          "404": {
+            "description": "booking not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
                     }
                   }
                 }
               }
             }
           }
-        },
+        }
+      }
+    },
     "/booking/update/{id}": {
       "put": {
         "tags": [
@@ -891,8 +976,8 @@
           }
         }
       }
-    }},
-  
+    }
+  },
   "components": {
     "schemas": {
       "User": {
@@ -977,7 +1062,6 @@
       "Bookings": {
         "type": "object",
         "properties": {
-
           "email": {
             "type": "string",
             "description": "email of the user"
@@ -986,31 +1070,27 @@
             "type": "string",
             "description": "pin to signin your account"
           },
-           
-          "category": {
-            "type": "string",
-            "required": true,
-            "enum": [
-              "Hall",
-              "Tent",
-              "Decoration",
-              "Photography",
-              "Invitation"
-            ]
-          },
-
           "serviceName": {
             "type": "string",
-            "description": "Name of the service to be booked"
+            "description": "Name of the service to be booked",
+            "enum": {
+              "values": [
+                "Hall",
+                "Decoration",
+                "Invitation",
+                "Photography"
+              ],
+              "message": "{values} is not a valid service name"
+            },
+            "default": "Hall"
           },
-
           "capacity": {
             "type": "number",
             "description": "number of attending people or quantity of service needed"
           },
           "duration": {
-            "type": "string",
-            "description": "For how long the service is needed",
+            "type": "number",
+            "description": "Amount to pay to get the service",
             "enum": {
               "values": [
                 "Part-time",
@@ -1027,9 +1107,9 @@
         "required": [
           "email",
           "password",
-          "serviceName",
-          "category"
+          "serviceName"
         ]
       }
     }
-  }}
+  }
+}
