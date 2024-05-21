@@ -163,7 +163,7 @@ export const ForgotPassword=asyncWrapper(async(req,res,next)=>
         user:FoundUser._id,
         expirationDate:new Date().getTime()+ (60*1000*5),
     });
-    const link=`http://localhost:8080/reset-password?token=${token}&id=${FoundUser.id}`;
+    const link=`https://localhost:8080/reset-password?token=${token}&id=${FoundUser.id}`;
     const emailBody=`click on the link below  to reset your password \n\n${link}`;
     await sendEmail(req.body.email,"Reset your password",emailBody);
 
