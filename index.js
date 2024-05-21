@@ -19,7 +19,7 @@ const options = {
     useUnifiedTopology: true,
     serverSelectionTimeoutMS: 30000, // 30 seconds timeout
     socketTimeoutMS: 45000, // 45 seconds timeout
-    poolSize: 10, // Maintain up to 10 socket connections
+    maxPoolSize: 10, // Maintain up to 10 socket connections
   };
 const app = express();
 app.use(cors(corsOptions));
