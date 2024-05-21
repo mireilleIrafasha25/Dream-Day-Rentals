@@ -11,7 +11,7 @@ import cors from "cors"
 const corsOptions ={
     allowedHeaders: ["Authorization", "Content-Type" ],
     methods: ["GET", "POST", "PUT", "UPDATE", "DELETE"],
-    origin:[ "http://localhost:5007", "https://dream-day-rentals-12.onrender.com"],
+    origin:[ "*"],
 }
 //time seconds
 const options = {
