@@ -18,8 +18,14 @@ const serviceSchema = new Schema (
         type: String,
         required: true,
         enum: {
-            values: ["Hall", "Tent", "Decoration","Invitation","Photography"],
+            values: ["Hall", "Garden", "Decoration","Invitation","Photography"],
             message: "{values} is not a valid service category",
+        }
+    },
+
+    Profile:{
+        url:{
+            type:String
         }
     },
     
@@ -27,18 +33,26 @@ const serviceSchema = new Schema (
         type: String,
         require: true
     },
-    phoneNumber:{
-        type: Number,
-        require: false
+    email:{
+        type: String,
+        required: true
+       
     },
-    servicePrice: {
+    phoneNumber:{
         type: Number,
         require: true
     },
+    Price: {
+        type: Number,
+        require: true
+    },
+    
+
     availability:{
          type: Boolean,
          require: true
-    },
+    }
+   
     
 }
 );
