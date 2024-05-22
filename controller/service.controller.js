@@ -2,18 +2,38 @@ import serviceModel from "../model/service.model.js";
 import { NotFoundError, BadRequestError } from "../error/index.js";
 import { validationResult } from "express-validator";
 import asyncWrapper from "../middleware/async.js";
+import cloudinary from "../utils/cloudinary.js";
 
 export const test = (req, res, next) => {
     res.send('Hello Brides!');
 }
 
    export const addNewService = asyncWrapper(async (req, res, next) => {
+    const result = await cloudinary.uploader.upload(req.file.path, function (err, result) {
+        if (err) {
+            console.log(err.message)
+            return res.status(500).json({ message: "error" })
+        }
+    })
        const errors = validationResult(req)
        
         if(!errors.isEmpty()){
             next(new BadRequestError(errors.array()[0].msg));
         }
-            const newService = await serviceModel.create(req.body)
+            const newService = await serviceModel.create({
+
+                serviceName:req.body.serviceName,
+                category:req.body.category,
+                description:req.body.description,
+                location:req.body.location,
+                phoneNumber:req.body.phoneNumber,
+                email:req.body.email,
+                price:req.body.servicePrice,
+                availability:true,
+                Profile:{
+                    url:result.url
+                }
+            })
            return  res.status(201).json(newService); 
         
         
@@ -75,6 +95,7 @@ export const test = (req, res, next) => {
         }
 
     }
+  
     export const deleteService = async(req, res, next) => {
         const id =req.params.id;
            
