@@ -7,7 +7,8 @@ export const forgotpasswordValidation=[
 export const resetPasswordValidation=[
 
     body("password","password is required").not().isEmpty(),
-    body("password","Password  should contain atleast 8 characters,uppercase and lower case letters,numbers and symbols").isStrongPassword()
+    body("password","Password  should contain atleast 8 characters,uppercase and lower case letters,numbers and symbols").isStrongPassword(),
+    body("confirmpassword","confirmpassword is required ").not().isEmpty()
 ];
 export const otpValidation=[
 
@@ -21,6 +22,8 @@ export const signUpValidation=[
     body("email","Invalid email").isEmail(),
     body("password","password is required").not().isEmpty(),
     body("password","Password  should contain atleast 8 characters,uppercase and lower case letters,numbers and symbols").isStrongPassword(),
+    body("confirmpassword","confirmpassword is required ").not().isEmpty(),
+  //  body("confirmpassword","confirmPassword  should contain atleast 8 characters,uppercase and lower case letters,numbers and symbols").isStrongPassword(),
 ];
 
 export const signInValidation=[

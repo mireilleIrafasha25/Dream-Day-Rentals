@@ -23,6 +23,11 @@ export const SignUp=asyncWrapper(async(req,res,next)=>
         console.log(errors.array());
          next(new BadRequestError(errors.array()[0].msg))
     }
+    //checking if password match
+    if(req.body.password !== req.body.confirmpassword)
+        {
+            return next(new BadRequestError("Passwords do not match"));
+        }
     // checking  if user is already in using the email
     const FounderUser=await UserModel.findOne({email:req.body.email})
     if(FounderUser)
@@ -181,6 +186,11 @@ export const ResetPassword = asyncWrapper(async (req, res, next) => {
     if (!errors.isEmpty()) {
         return next(new BadRequestError(errors.array()[0].msg));
     };
+    //checking if password match
+    if(req.body.password !== req.body.confirmpassword)
+        {
+            return next(new BadRequestError("Passwords do not match"));
+        }
     // Verify token
     const decoded = await jwt.verify(req.body.token, process.env.JWT_SECRET_KEY);
     if (!decoded) {

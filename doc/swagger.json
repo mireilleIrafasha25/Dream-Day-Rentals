@@ -644,6 +644,10 @@
             "type": "string",
             "description": "password of the User"
           },
+          "confirmpassword": {
+            "type": "string",
+            "description": "confirmpassword of the User"
+          },
           "role": {
             "type": "string",
             "description": "role of the User",
@@ -655,7 +659,8 @@
           "Lastname",
           "password",
           "email",
-          "role"
+          "role",
+          "confirmpassword"
         ]
       },
       "Services": {

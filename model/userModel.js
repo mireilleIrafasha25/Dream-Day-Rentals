@@ -21,6 +21,10 @@ const userSchema=new schema({
         type:String,
         required:true
     },
+    confirmpassword:{
+        type:String,
+        required:false
+    },
     role:{
         type:String,
         required:true,
