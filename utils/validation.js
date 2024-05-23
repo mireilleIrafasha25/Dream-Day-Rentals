@@ -45,6 +45,5 @@ export const addServiceValidation = [
 
 export const addNewBookingValidation = [
     body("email", "email is required").not().isEmpty(),
-    body("category", "Service category is required").not().isEmpty(),
     body("serviceName", "Service name is required").not().isEmpty()
 ];

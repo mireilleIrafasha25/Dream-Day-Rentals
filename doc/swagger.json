@@ -342,48 +342,78 @@
         "description": "add a new service with  the provided details",
         "parameters": [
           {
-            "name": "body",
-            "in": "body",
+            "name": "category",
+            "in": "formData",
             "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/Services"
-            }
+            "type":"string",
+            "enum": ["Hall", "Garden", "Decoration","Invitation","Photography"]
+          },
+          {
+            "name": "serviceName",
+            "in": "formData",
+            "required": true,
+            "type":"string"
+            
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "required": true,
+            "type":"file"
+           
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "required": true,
+            "type":"string"
+           
+          },
+          {
+            "name": "location",
+            "in": "formData",
+            "required": true,
+            "type":"string"
+           
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "required": true,
+            "type":"string"
+           
+          },
+          {
+            "name": "phoneNumber",
+            "in": "formData",
+            "required": true,
+            "type":"number"
+           
+          },
+          {
+            "name": "price",
+            "in": "formData",
+            "required": true,
+            "type":"number"
+           
+          },
+          {
+            "name": "availability",
+            "in": "formData",
+            "required": true,
+            "type":"boolean",
+            "default": true
           }
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Services"
-              }
-            }
-          }
-        },
+       
         "responses": {
-          "201": {
-            "description": "Service added successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Services"
-                }
-              }
-            }
+          "200": {
+            "description": "Service added successfully"
+           
           },
-          "400": {
-            "description": "Bad request -Validation error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
+          "401": {
+            "description": "Bad request -Validation error"
+            
           }
         }
       }
@@ -749,52 +779,7 @@
                   }
                 }
               },
-              "/booking/get/{category}": {
-                "get": {
-                  "tags": [
-                    "Bookings"
-                  ],
-                  "summary": "Get a booking by service category",
-                  "description": "Returns a booking with the provided serviceName",
-                  "parameters": [
-                    {
-                      "name": "category",
-                      "in": "path",
-                      "required": true,
-                      "schema": {
-                        "type": "string"
-                      }
-                    }
-                  ],
-                  "responses": {
-                    "200": {
-                      "description": "booking found",
-                      "content": {
-                        "application/json": {
-                          "schema": {
-                            "$ref": "#/components/schemas/Bookings"
-                          }
-                        }
-                      }
-                    },
-                    "404": {
-                      "description": "booking not found",
-                      "content": {
-                        "application/json": {
-                          "schema": {
-                            "type": "object",
-                            "properties": {
-                              "message": {
-                                "type": "string"
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
+            
               "/booking/getByCategory/{category}":{
                 "get":
                 {
@@ -840,68 +825,68 @@
                         }
                       }
                     },
-              "/booking/update/{id}": {
-                "put": {
-                  "tags": [
-                    "Bookings"
-                  ],
-                  "summary": "Update a booking",
-                  "description": "Updates a booking with the provided details",
-                  "parameters": [
+                    "/booking/update/{id}":
                     {
-                      "name": "id",
-                      "in": "path",
-                      "required": true,
-                      "type": "string"
-                    },
-                    {
-                      "in": "body",
-                      "name": "body",
-                      "required": true,
-                      "schema": {
-                        "$ref": "#/components/schemas/Bookings"
-                      }
-                    }
-                  ],
-                  "requestBody": {
-                    "required": true,
-                    "content": {
-                      "application/json": {
-                        "schema": {
-                          "$ref": "#/components/schemas/Bookings"
-                        }
-                      }
-                    }
-                  },
-                  "responses": {
-                    "200": {
-                      "description": "Booking updated successfully",
-                      "content": {
-                        "application/json": {
-                          "schema": {
-                            "$ref": "#/components/schemas/Bookings"
-                          }
-                        }
-                      }
-                    },
-                    "404": {
-                      "description": "Not Found - Booking not found",
-                      "content": {
-                        "application/json": {
-                          "schema": {
-                            "type": "object",
-                            "properties": {
-                              "message": {
-                                "type": "string"
+                      "put":{
+                          "tags": ["Bookings"],
+                              "summary": "Update booking",
+                              "description": "Updates booking with the provided details",
+                              "parameters": [
+                                  {
+                                      "name": "body",
+                                      "in": "body",
+                                      "required": true,
+                                      "schema": {
+                                          "$ref": "#/components/schemas/Bookings"
+                                      }
+                                  },
+                                  {
+                                      "name": "id",
+                                      "in": "path",
+                                      "required": true,
+                                      "schema": {
+                                          "type": "string"
+                                      }
+                                  }
+                              ],
+                              "requestBody": {
+                                  "content": {
+                                      "application/json": {
+                                          "schema": {
+                                              "$ref": "#/components/schemas/Bookings"
+                                          }
+                                      }
+                                  }
+                              },
+                              "responses": {
+                                  "200": {
+                                      "description": "Booking Updated",
+                                      "content": {
+                                          "application/json": {
+                                              "schema": {
+                                                  "$ref": "#/components/schemas/Bookings"
+                                              }
+                                          }
+                                      }
+                                  },
+                                  "404": {
+                                      "description": "Booking not found",
+                                      "content": {
+                                          "application/json": {
+                                              "schema": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                      "message": {
+                                                          "type": "string"
+                                                      }
+                                                  }
+                                              }
+                                          }
+                                      }
+                                  }
                               }
-                            }
-                          }
-                        }
                       }
-                    }
-                  }
-                }
-              },
+                    },
               "/booking/delete/{id}": {
                 "delete": {
                   "tags": [
@@ -985,65 +970,6 @@
           "role"
         ]
       },
-      "Services": {
-        "type": "object",
-        "properties": {
-
-          "serviceName": {
-            "type": "string",
-            "description": "name of the service"
-          },
-          "description": {
-            "type": "string",
-            "description": "Summary of what the service is about"
-          },
-          "category": {
-            "type": "string",
-            "enum": [
-              "Hall",
-              "Garden",
-              "Decoration",
-              "Photography",
-              "Invitation"
-            ],
-            "default": "Hall"
-          },
-         "profile":{
-          "description":"View of the service",
-            "url":{
-                "type":"string"
-            }
-        },
-          "location": {
-            "type": "string",
-            "description": "Different sites to find the service"
-          },
-          "phoneNumber": {
-            "type": "number",
-            "description": "call for more information about the service and Booking"
-          },
-          "email":{
-            "type":"string",
-            "description":"You can write to us to book "
-          },
-          "price": {
-            "type": "number",
-            "description": "Amount to pay to get the service"
-          },
-          "availability": {
-            "type": "boolean",
-            "description": "Inform if the service is available or not"
-          }
-        },
-        "required": [
-          "serviceName",
-          "category",
-          "profile",
-          "email",
-          "price",
-          "availability"
-        ]},
-
         "Bookings": {
           "type": "object",
           "properties": {
@@ -1053,7 +979,7 @@
               "description": "email of the user"
             },
             "category":{
-              "type": "String",
+              "type": "string",
               "required": true,
               "enum": {
                   "values": ["Hall","Tent", "Decoration","Invitation","Photography"],
@@ -1063,18 +989,8 @@
             
             "serviceName": {
               "type": "string",
-              "description": "Name of the service to be booked",
-              "enum": {
-                "values": [
-                  "Hall",
-                  "Garden",
-                  "Decoration",
-                  "Invitation",
-                  "Photography"
-                ],
-                "message": "{values} is not a valid service name"
-              },
-              "default": "Hall"
+              "description": "Name of the service to be booked"
+             
             },
            
             "date": {
@@ -1090,12 +1006,7 @@
                 "message":"{values} is not a valid payment method"
               }
             }
-          },
-          "required": [
-            "email",
-          "category",
-          "serviceName"
-          ]
+          } 
       }
      
     }
