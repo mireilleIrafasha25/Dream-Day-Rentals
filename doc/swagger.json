@@ -975,6 +975,20 @@
           "confirmpassword"
         ]
       },
+      "Services":{
+        "type":"object",
+        "properties":{
+          "category":{},
+          "serviceName":{},
+          "image":{},
+          "description":{},
+          "location":{},
+          "email":{},
+          "phoneNumber":{},
+          "price":{},
+          "availability":{}
+        }
+      },
         "Bookings": {
           "type": "object",
           "properties": {
