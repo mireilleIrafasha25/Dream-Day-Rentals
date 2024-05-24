@@ -23,7 +23,7 @@ const serviceSchema = new Schema (
         }
     },
 
-    Profile:{
+    image:{
         url:{
             type:String
         }

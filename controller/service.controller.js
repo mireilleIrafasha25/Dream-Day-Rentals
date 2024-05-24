@@ -30,7 +30,7 @@ export const test = (req, res, next) => {
                 email:req.body.email,
                 price:req.body.servicePrice,
                 availability:true,
-                Profile:{
+                image:{
                     url:result.url
                 }
             })
