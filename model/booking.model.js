@@ -1,14 +1,27 @@
-import { model, Schema } from "mongoose";
+import pkg from "lodash";
+import mongoose from "mongoose";
 
-const bookingSchema = new Schema({
+
+const {min,max}=pkg
+const schema= mongoose.Schema
+const bookingSchema = new schema({
     
+    Fullname:{
+        type: String,
+        required: true,
+    },
     email:{
         type: String,
         required: true,
         unique: true
     },
-   
-    category:{
+    phone:{
+    type:Number,
+    required: true,
+    //min:0,
+   // max:10,
+    },
+   category:{
         type: String,
         required: true,
         enum: {
@@ -17,12 +30,13 @@ const bookingSchema = new Schema({
         },
     },
     serviceName: {
-        type: String,
-        require: true,
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"service",
+        required: true,
     },
    
     date: {
-        type: String,
+        type:String,
         require: true,
     },
 
@@ -38,5 +52,5 @@ const bookingSchema = new Schema({
 
 });
  
-const booking =model('booking', bookingSchema)
+const booking =mongoose.model('booking', bookingSchema)
 export default booking;
