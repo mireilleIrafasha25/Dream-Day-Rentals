@@ -1,8 +1,5 @@
-import pkg from "lodash";
+
 import mongoose from "mongoose";
-
-
-const {min,max}=pkg
 const schema= mongoose.Schema
 const bookingSchema = new schema({
     
@@ -16,10 +13,8 @@ const bookingSchema = new schema({
         unique: true
     },
     phone:{
-    type:Number,
+    type:String,
     required: true,
-    //min:0,
-   // max:10,
     },
    category:{
         type: String,

@@ -4,6 +4,7 @@ import { validationResult } from "express-validator";
 import asyncWrapper from "../middleware/async.js";
 import {sendEmail} from "../utils/sendEmail.js"
 import ServiceModel from "../model/service.model.js"
+import {parseISO,format} from "date-fns";
 
 
    export const addNewBooking = asyncWrapper(async (req, res, next) => {
@@ -21,17 +22,15 @@ import ServiceModel from "../model/service.model.js"
             {
                 return next(new NotFoundError(`${req.body.serviceName}  is not available at ${req.body.date}`));
             }
-            const weedingDate=new Date(req.body.startDate).toLocaleDateString();
-            // if (isNaN(weedingDate)) {
-            //     return next(new BadRequestError(`Invalid date format: ${req.body.date}`));
-            // }
+            const weedingDate=parseISO(req.body.date)
+            const FormattedDate=format(weedingDate,"yyyy-MM-dd")
         const addNewBooking=new bookingModel({
             Fullname: req.body.Fullname, 
             phone: req.body.phone,
             email: req.body.email,
             category:req.body.category,
             serviceName:foundService._id,
-            date:weedingDate,
+            date:`${FormattedDate}`,
             paymentMethod:req.body.paymentMethod
         });
         try {

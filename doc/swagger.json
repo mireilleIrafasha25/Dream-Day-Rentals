@@ -992,7 +992,14 @@
         "Bookings": {
           "type": "object",
           "properties": {
-
+           "Fullname":{
+            "type": "string",
+            "description": "Fullname of the user"
+           },
+           "phone":{
+            "type": "string",
+            "description": "Phone number of user"
+           },
             "email": {
               "type": "string",
               "description": "email of the user"
