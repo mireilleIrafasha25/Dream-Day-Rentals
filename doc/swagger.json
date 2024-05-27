@@ -956,7 +956,7 @@
             "type": "string",
             "description": "password of the User"
           },
-          "confirmpassword": {
+          "confirmPassword": {
             "type": "string",
             "description": "confirmpassword of the User"
           },

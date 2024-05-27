@@ -2,9 +2,10 @@ import bookingModel from "../model/booking.model.js";
 import { NotFoundError, BadRequestError } from "../error/index.js";
 import { validationResult } from "express-validator";
 import asyncWrapper from "../middleware/async.js";
-import {sendEmail} from "../utils/sendEmail.js"
-import ServiceModel from "../model/service.model.js"
+import {sendEmail} from "../utils/sendEmail.js";
+import ServiceModel from "../model/service.model.js";
 import {parseISO,format} from "date-fns";
+
 
 
    export const addNewBooking = asyncWrapper(async (req, res, next) => {
