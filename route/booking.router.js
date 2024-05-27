@@ -4,7 +4,7 @@ import { addNewBooking, getAllBookings, getBookingById,updateBooking, deleteBook
 import { addNewBookingValidation } from "../utils/validation.js";
 import {authorize,authenticateToken} from "../middleware/authethicateToken.js";
 
-bookingRoute.post("/add", addNewBookingValidation,authenticateToken,addNewBooking );
+bookingRoute.post("/add", addNewBookingValidation,addNewBooking );
 bookingRoute.get("/list", getAllBookings);
 bookingRoute.get("/get/:id", getBookingById);
 bookingRoute.get("/getByCategory/:category", findBookingByCategory);
