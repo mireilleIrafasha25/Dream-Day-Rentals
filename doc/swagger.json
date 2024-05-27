@@ -935,7 +935,7 @@
               },
               "/contact/add":{
                 "post":{
-                  "tags":["Contact"],
+                  "tags":["Contact Us"],
                   "summary":"Add a contact",
                   "description":"Add a contact",
                   "parameters":[
@@ -989,7 +989,7 @@
               },
               "/contact/list":{
                 "get":{
-                  "tags":["Contact"],
+                  "tags":["Contact Us"],
                   "summary":"List all contacts",
                   "description":"List all contacts",
                   "responses":{
@@ -1023,7 +1023,7 @@
               },
               "/contact/findbyUser/{id}":{
                 "get":{
-                  "tags":["Contact"],
+                  "tags":["Contact Us"],
                   "summary":"Find a contact by id",
                   "description":"Find a contact by id",
                   "parameters": [
@@ -1040,7 +1040,7 @@
               "/contact/update/{id}":
               {
                 "put":{
-                  "tags":["Contact"],
+                  "tags":["Contact Us"],
                   "summary":"Update a contact",
                   "description":"Update a contact",
                   "parameters": [
@@ -1101,7 +1101,7 @@
               "/contact/delete/{id}":
               {
                 "delete":{
-                  "tags":["Contact"],
+                  "tags":["Contact Us"],
                   "summary":"Delete Message",
                   "description":" delete message with specified id",
                   "parameters":[
