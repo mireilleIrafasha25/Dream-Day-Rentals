@@ -932,6 +932,216 @@
                     }
                   }
                 }
+              },
+              "/contact/add":{
+                "post":{
+                  "tags":["Contact Us"],
+                  "summary":"Add a contact",
+                  "description":"Add a contact",
+                  "parameters":[
+                    {
+                      "name":"body",
+                      "in":"body",
+                      "required":true,
+                      "schema":{
+                        "$ref":"#/components/schemas/Contact"
+                      }
+                    }
+                  ],
+                  "requestBody":{
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/Contact"
+                        }
+                      }
+                    }
+
+                  },
+                  "responses":{
+                    "201": {
+                      "description": "contact added",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Contact"
+                          }
+                        }
+                      }
+                    },
+                    "404": {
+                      "description": "contact not found",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "type": "object",
+                            "properties": {
+                              "message": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "/contact/list":{
+                "get":{
+                  "tags":["Contact Us"],
+                  "summary":"List all contacts",
+                  "description":"List all contacts",
+                  "responses":{
+                    "200": {
+                      "description": "contact listed",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Contact"
+                          }
+                        }
+                      }
+                    },
+                    "404": {
+                      "description": "contact not found",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "type": "object",
+                            "properties": {
+                              "message": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "/contact/findbyUser/{id}":{
+                "get":{
+                  "tags":["Contact Us"],
+                  "summary":"Find a contact by id",
+                  "description":"Find a contact by id",
+                  "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }]
+                }
+              },
+              "/contact/update/{id}":
+              {
+                "put":{
+                  "tags":["Contact Us"],
+                  "summary":"Update a contact",
+                  "description":"Update a contact",
+                  "parameters": [
+                    {
+                      "name": "body",
+                      "in": "body",
+                      "required": true,
+                      "schema": {
+                        "$ref": "#/components/schemas/Contact"
+                      }
+                    },
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }],
+                    "requestBody":{
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Contact"
+                          }
+                        }
+                      }
+                    },
+                    "responses":{
+                      "200":{
+                        "description": "contact updated",
+                        "content": {
+                          "application/json": {
+                            "schema": {
+                              "$ref": "#/components/schemas/Contact"
+                            }
+                          }
+                        }
+                      },
+                      "404":{
+                        "description": "contact not found",
+                        "content": {
+                          "application/json": {
+                            "schema": {
+                              "type": "object",
+                              "properties": {
+                                "message": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                }
+              },
+              "/contact/delete/{id}":
+              {
+                "delete":{
+                  "tags":["Contact Us"],
+                  "summary":"Delete Message",
+                  "description":" delete message with specified id",
+                  "parameters":[
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses":{
+                    "200":{
+                      "description": "contact deleted",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Contact"
+                          }
+                        }
+                      }
+                    },
+                    "404":{
+                      "description": "contact not found",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "type": "object",
+                            "properties": {
+                              "message": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
               }
   },
 
@@ -956,7 +1166,7 @@
             "type": "string",
             "description": "password of the User"
           },
-          "confirmpassword": {
+          "confirmPassword": {
             "type": "string",
             "description": "confirmpassword of the User"
           },
@@ -974,6 +1184,24 @@
           "role",
           "confirmpassword"
         ]
+      },
+      "Contact":{
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "name of the contact"
+          },
+          "email": {
+            "type": "string",
+            "description": "email of the contact"
+          },
+          "message": {
+            "type": "string",
+            "description": "phoneNumber of the contact"
+          }
+        },
+        "required":["email","contact","message"]
       },
       "Services":{
         "type":"object",

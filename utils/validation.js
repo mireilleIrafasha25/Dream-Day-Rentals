@@ -8,7 +8,7 @@ export const resetPasswordValidation=[
 
     body("password","password is required").not().isEmpty(),
     body("password","Password  should contain atleast 8 characters,uppercase and lower case letters,numbers and symbols").isStrongPassword(),
-    body("confirmpassword","confirmpassword is required ").not().isEmpty()
+    body("confirmPassword","confirmPassword is required ").not().isEmpty()
 ];
 export const otpValidation=[
 
@@ -22,7 +22,7 @@ export const signUpValidation=[
     body("email","Invalid email").isEmail(),
     body("password","password is required").not().isEmpty(),
     body("password","Password  should contain atleast 8 characters,uppercase and lower case letters,numbers and symbols").isStrongPassword(),
-    body("confirmpassword","confirmpassword is required ").not().isEmpty(),
+    body("confirmPassword","confirmpassword is required ").not().isEmpty(),
   //  body("confirmpassword","confirmPassword  should contain atleast 8 characters,uppercase and lower case letters,numbers and symbols").isStrongPassword(),
 ];
 
@@ -47,6 +47,14 @@ export const addServiceValidation = [
 ];
 
 export const addNewBookingValidation = [
+    body("name","name of your weeding is required").not().isEmpty(),
     body("email", "email is required").not().isEmpty(),
-    body("serviceName", "Service name is required").not().isEmpty()
+    body("serviceName", "Service name is required").not().isEmpty(),
+    body("paymentMethod", "Payment method is required").not().isEmpty()
 ];
+
+export const addnewMessageValidation = [
+    body("name", "name is required").not().isEmpty(),
+    body("email", "email is required").not().isEmpty(),
+    body("message", "message is required").not().isEmpty()
+]

@@ -2,6 +2,7 @@ import express from "express";
 const bookingRoute = express.Router();
 import { addNewBooking, getAllBookings, getBookingById,updateBooking, deleteBooking, findBookingByCategory } from "../controller/booking.controller.js";
 import { addNewBookingValidation } from "../utils/validation.js";
+import {authorize,authenticateToken} from "../middleware/authethicateToken.js";
 
 bookingRoute.post("/add", addNewBookingValidation,addNewBooking );
 bookingRoute.get("/list", getAllBookings);
