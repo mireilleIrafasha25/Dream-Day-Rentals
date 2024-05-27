@@ -938,6 +938,16 @@
                   "tags":["Contact"],
                   "summary":"Add a contact",
                   "description":"Add a contact",
+                  "parameters":[
+                    {
+                      "name":"body",
+                      "in":"body",
+                      "required":true,
+                      "schema":{
+                        "$ref":"#/components/schemas/Contact"
+                      }
+                    }
+                  ],
                   "requestBody":{
                     "content": {
                       "application/json": {
