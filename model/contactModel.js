@@ -14,4 +14,7 @@ const contactSchema = new schema({
         type:String,
         required:true,
     }
-})
+});
+const ContactModel=mongoose.model("Contact",contactSchema);
+
+export default ContactModel;
