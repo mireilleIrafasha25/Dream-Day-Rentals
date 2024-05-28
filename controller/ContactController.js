@@ -28,6 +28,7 @@ export const findbyUser= asyncWrapper(async (req, res, next) => {
         next();
 });
 
+
 export const updateContact = asyncWrapper(async (req, res, next) => {
     const Contactowner = req.params.id;
         const foundContact = await contactModel.findbyIdAndUpdate(Contactowner,req.body,{new:true});
