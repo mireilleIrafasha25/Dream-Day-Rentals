@@ -47,7 +47,7 @@ export const addServiceValidation = [
 ];
 
 export const addNewBookingValidation = [
-    body("Fullname","name of your weeding is required").not().isEmpty(),
+    body("Fullname","Your name  required").not().isEmpty(),
     body("email", "email is required").not().isEmpty(),
     body("serviceName", "Service name is required").not().isEmpty(),
     body("paymentMethod", "Payment method is required").not().isEmpty()

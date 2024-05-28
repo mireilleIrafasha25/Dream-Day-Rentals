@@ -4,7 +4,7 @@ import { validationResult } from "express-validator";
 import asyncWrapper from "../middleware/async.js";
 import {sendEmail} from "../utils/sendEmail.js";
 import ServiceModel from "../model/service.model.js";
-import {parseISO,format} from "date-fns";
+import {parseISO,format,parse} from "date-fns";
 
 
 
@@ -23,7 +23,7 @@ import {parseISO,format} from "date-fns";
             {
                 return next(new NotFoundError(`${req.body.serviceName}  is not available at ${req.body.date}`));
             }
-            const weedingDate=parseISO(req.body.date)
+            const weedingDate=parse(req.body.date,"dd/MM/yyyy",new Date());
             const FormattedDate=format(weedingDate,"yyyy-MM-dd")
         const addNewBooking=new bookingModel({
             Fullname: req.body.Fullname, 
