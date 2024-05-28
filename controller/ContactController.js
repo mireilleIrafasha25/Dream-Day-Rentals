@@ -1,6 +1,7 @@
 import contactModel from "../model/contactModel.js";
 import asyncWrapper from "../middleware/async.js";
 import {UnauthorizedError,BadRequestError} from "../error/index.js";
+import { validationResult } from "express-validator";
 
 
 export const addNewContact = asyncWrapper(async (req, res, next) => {
