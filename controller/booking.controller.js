@@ -30,7 +30,7 @@ import {parseISO,format,parse} from "date-fns";
             phone: req.body.phone,
             email: req.body.email,
             category:req.body.category,
-            serviceName:foundService._id,
+            serviceName:foundService.serviceName,
             date:`${FormattedDate}`,
             paymentMethod:req.body.paymentMethod
         });
