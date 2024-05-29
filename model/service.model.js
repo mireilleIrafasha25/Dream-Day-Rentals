@@ -3,7 +3,7 @@ import {model, Schema} from "mongoose";
 const serviceSchema = new Schema (
     
     {
-    serviceName:{
+    serviceProvider:{
         type: String,
         required: true,
          unique: true
@@ -51,6 +51,10 @@ const serviceSchema = new Schema (
     availability:{
          type: Boolean,
          require: true
+    },
+    more: {
+        type: String,
+        required: false
     }
    
     
