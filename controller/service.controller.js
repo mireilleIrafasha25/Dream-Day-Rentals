@@ -8,37 +8,43 @@ export const test = (req, res, next) => {
     res.send('Hello Brides!');
 }
 
-   export const addNewService = asyncWrapper(async (req, res, next) => {
-    const result = await cloudinary.uploader.upload(req.file.path, function (err, result) {
-        if (err) {
-            console.log(err.message)
-            return res.status(500).json({ message: "error" })
-        }
-    })
-       const errors = validationResult(req)
-       
-        if(!errors.isEmpty()){
-            next(new BadRequestError(errors.array()[0].msg));
-        }
-            const newService = await serviceModel.create({
+export const addNewService = asyncWrapper(async (req, res, next) => {
+    try {
+        const result = await cloudinary.uploader.upload(req.file.path);
 
-                serviceName:req.body.serviceName,
-                category:req.body.category,
-                description:req.body.description,
-                location:req.body.location,
-                phoneNumber:req.body.phoneNumber,
-                email:req.body.email,
-                price:req.body.servicePrice,
-                availability:true,
-                image:{
-                    url:result.url
-                },
-                more:req.body.more
-            })
-           return  res.status(201).json(newService); 
-        
-        
-    });
+        // Check if Cloudinary upload was successful
+        if (!result || !result.url) {
+            throw new Error('Failed to upload image to Cloudinary');
+        }
+
+        // Validate request body
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            throw new BadRequestError(errors.array()[0].msg);
+        }
+
+        // Create new service
+        const newService = await serviceModel.create({
+            serviceName: req.body.serviceName,
+            category: req.body.category,
+            description: req.body.description,
+            location: req.body.location,
+            phoneNumber: req.body.phoneNumber,
+            email: req.body.email,
+            price: req.body.servicePrice,
+            availability: true,
+            image: {
+                url: result.url
+            },
+            more: req.body.more
+        });
+
+        res.status(201).json(newService);
+    } catch (error) {
+        console.error(error.message);
+        return res.status(500).json({ message: "Internal Server Error" });
+    }
+});
 
     export const getAllServices =  async (req, res, next) => {
         try{
