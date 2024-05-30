@@ -22,7 +22,7 @@ export const test = (req, res, next) => {
         }
             const newService = await serviceModel.create({
 
-                serviceName:req.body.serviceName,
+                serviceProvider:req.body.serviceName,
                 category:req.body.category,
                 description:req.body.description,
                 location:req.body.location,
@@ -32,7 +32,8 @@ export const test = (req, res, next) => {
                 availability:true,
                 image:{
                     url:result.url
-                }
+                },
+                more:req.body.more
             })
            return  res.status(201).json(newService); 
         

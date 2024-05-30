@@ -24,7 +24,7 @@ const bookingSchema = new schema({
             message: "{values} is not a valid service category",
         },
     },
-    serviceName: {
+    serviceProvider: {
         type: mongoose.Schema.Types.ObjectId,
         ref:"service",
         required: true,
@@ -42,7 +42,8 @@ const bookingSchema = new schema({
             values:["Mobile Money","Credit Card","Debit Card"],
             message:"{values} is not a valid payment method"
         }
-    }
+    }   
+
 
 
 });

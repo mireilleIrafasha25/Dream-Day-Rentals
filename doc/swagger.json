@@ -349,7 +349,7 @@
             "enum": ["Hall", "Garden", "Decoration","Invitation","Photography"]
           },
           {
-            "name": "serviceName",
+            "name": "serviceProvider",
             "in": "formData",
             "required": true,
             "type":"string"
@@ -403,6 +403,14 @@
             "required": true,
             "type":"boolean",
             "default": true
+          },
+          {
+            "name": "more",
+            "in": "formData",
+            "required": false,
+            "type": "string",
+            "format": "url"
+            
           }
         ],
        
@@ -1207,7 +1215,7 @@
         "type":"object",
         "properties":{
           "category":{},
-          "serviceName":{},
+          "serviceProvider":{},
           "image":{},
           "description":{},
           "location":{},
@@ -1241,7 +1249,7 @@
               }
           },
             
-            "serviceName": {
+            "serviceProvider": {
               "type": "string",
               "description": "Name of the service to be booked"
              
