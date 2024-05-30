@@ -22,7 +22,7 @@ export const test = (req, res, next) => {
         }
             const newService = await serviceModel.create({
 
-                serviceProvider:req.body.serviceProvider,
+                serviceName:req.body.serviceName,
                 category:req.body.category,
                 description:req.body.description,
                 location:req.body.location,

@@ -24,7 +24,7 @@ const bookingSchema = new schema({
             message: "{values} is not a valid service category",
         },
     },
-    serviceProvider: {
+    serviceName: {
         type: mongoose.Schema.Types.ObjectId,
         ref:"service",
         required: true,
