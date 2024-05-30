@@ -40,7 +40,7 @@ export const testValidation = [
 ];
 
 export const addServiceValidation = [
-    body("serviceProvider", " service provider is required required").not().isEmpty(),
+    body("serviceProvider", "Service name is required").not().isEmpty(),
     body("category", "Service category name is required").not().isEmpty(),
     body("price", "Price of the service is required").not().isEmpty(),
     body("availability", "availability of a service is required").not().isEmpty()
@@ -49,7 +49,7 @@ export const addServiceValidation = [
 export const addNewBookingValidation = [
     body("Fullname","Your name  required").not().isEmpty(),
     body("email", "email is required").not().isEmpty(),
-    body("serviceProvider", "Service provider is required").not().isEmpty(),
+    body("serviceProvider", "Service name is required").not().isEmpty(),
     body("paymentMethod", "Payment method is required").not().isEmpty()
 ];
 
