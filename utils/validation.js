@@ -42,7 +42,7 @@ export const testValidation = [
 export const addServiceValidation = [
     body("serviceProvider", "Service name is required").not().isEmpty(),
     body("category", "Service category name is required").not().isEmpty(),
-    body("servicePrice", "Price of the service is required").not().isEmpty(),
+    body("price", "Price of the service is required").not().isEmpty(),
     body("availability", "availability of a service is required").not().isEmpty()
 ];
 
