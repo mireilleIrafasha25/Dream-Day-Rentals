@@ -349,7 +349,7 @@
             "enum": ["Hall", "Garden", "Decoration","Invitation","Photography"]
           },
           {
-            "name": "serviceProvider",
+            "name": "serviceName",
             "in": "formData",
             "required": true,
             "type":"string"
@@ -1215,7 +1215,7 @@
         "type":"object",
         "properties":{
           "category":{},
-          "serviceProvider":{},
+          "serviceName":{},
           "image":{},
           "description":{},
           "location":{},
@@ -1249,7 +1249,7 @@
               }
           },
             
-            "serviceProvider": {
+            "serviceName": {
               "type": "string",
               "description": "Name of the service to be booked"
              
