@@ -1,65 +1,53 @@
-import {model, Schema} from "mongoose";
-
-const serviceSchema = new Schema (
-    
-    {
-    serviceName:{
+import mongoose from "mongoose";
+const schema=mongoose.Schema
+const serviceSchema = new schema({
+    serviceName: {
         type: String,
         required: true,
-         unique: true
-         },
-
+        unique: true
+    },
     description: {
         type: String,
         required: false
     },
-
     category: {
         type: String,
         required: true,
         enum: {
-            values: ["Hall", "Garden", "Decoration","Invitation","Photography"],
-            message: "{values} is not a valid service category",
+            values: ["Hall", "Garden", "Decoration", "Invitation", "Photography"],
+            message: "{VALUE} is not a valid service category",
         }
     },
-
-    image:{
-        url:{
-            type:String
+    image: {
+        url: {
+            type: String
         }
     },
-    
-    location:{
-        type: String,
-        require: true
-    },
-    email:{
+    location: {
         type: String,
         required: true
-       
     },
-    phoneNumber:{
+    email: {
+        type: String,
+        required: true
+    },
+    phoneNumber: {
         type: Number,
-        require: true
+        required: true
     },
-    Price: {
+    price: {
         type: Number,
-        require: true
+        required: false
     },
-    
-
-    availability:{
-         type: Boolean,
-         require: true
+    availability: {
+        type: Boolean,
+        required: true
     },
     more: {
         type: String,
         required: false
     }
-   
-    
-}
-);
+});
 
-const service = model('service', serviceSchema);
-export default service;
+const Service = mongoose.model('Service', serviceSchema);
+export default Service;
