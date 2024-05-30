@@ -1249,7 +1249,7 @@
               }
           },
             
-            "serviceProvider": {
+            "serviceName": {
               "type": "string",
               "description": "Name of the service to be booked"
              
