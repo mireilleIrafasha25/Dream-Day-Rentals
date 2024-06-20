@@ -167,6 +167,30 @@
         }
       }
     },
+    "/user/listAll": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get all user",
+        "description": "Returns all the userzs",
+        "responses": {
+          "200": {
+            "description": "All the users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/user/verify": {
       "post": {
         "tags": [
@@ -1180,6 +1204,7 @@
           },
           "role": {
             "type": "string",
+            "enum":["admin","user"],
             "description": "role of the User",
             "default": "user"
           }

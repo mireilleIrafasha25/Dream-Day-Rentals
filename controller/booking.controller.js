@@ -62,7 +62,7 @@ import {parseISO,format,parse} from "date-fns";
             } catch (emailError) {
                 console.error('Error sending email:', emailError);
                 // Optionally, you might want to roll back the booking creation if email sending fails
-                await BookingModel.findByIdAndDelete(savedBooking._id);
+                await bookingModel.findByIdAndDelete(savedBooking._id);
                 return next(new Error('Booking created but failed to send confirmation email. Please try again later.'));
             }
     

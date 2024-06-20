@@ -46,8 +46,9 @@ export const SignUp=asyncWrapper(async(req,res,next)=>
         Lastname:req.body.Lastname,
         email:req.body.email,
         password:hashedPassword,
+        role:req.body.role,
         otp: otp,
-        otpExpires:otpExpirationDate,
+        otpExpires:otpExpirationDate
     });
     const savedUser= await newUser.save();
     // console.log(savedUser);
@@ -126,6 +127,20 @@ export const SignIn=asyncWrapper(async(req,res,next)=>
         token:token
     });
 });
+ 
+export const getAllusers =  async (req, res, next) => {
+    try{
+        const getUsers = await UserModel.find();
+        if(getUsers){
+            return res.status(200).json({
+                size: getUsers.length,
+                getUsers
+            })
+        }
+        
+    }catch (error){
+        next(error);  
+    }}
 
 export const Logout=asyncWrapper(async(req,res,next)=>
 {
