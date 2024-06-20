@@ -26,13 +26,13 @@ const userSchema=new schema({
         required:false
     },
     role:{
-        type:String,
-        required:true,
+        
         enum:{
-            values:['admin', 'user'],
+            values:["admin", "user"],
             message:'Role must be admin or user.'
         },
-        default:'user'
+        type:String,
+        default: "user"
     },
     otp:{
         type:Number,
