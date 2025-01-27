@@ -10,8 +10,8 @@ const userSchema=new schema({
     },
     Lastname:{
         type:String,
-        required:false
-        },
+        required:false,
+            message:["Please enter your last name"]},
     email:{
         type:String,
         required:true,
@@ -28,8 +28,8 @@ const userSchema=new schema({
     role:{
         
         enum:{
-            values:["admin", "user"],
-            message:'Role must be admin or user.'
+            values:["user", "admin"],
+            message:'Role must be user or admin.'
         },
         type:String,
         default: "user"
