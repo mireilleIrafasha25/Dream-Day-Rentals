@@ -122,7 +122,7 @@ export const SignIn=asyncWrapper(async(req,res,next)=>
     const token = jwt.sign({id:FoundUser.id,email:FoundUser.email},process.env.JWT_SECRET_KEY, {expiresIn:'1h'});
 
     res.status(200).json({
-        message:"User account verified!",
+        message:"Login successful",
         user:FoundUser,
         token:token
     });
