@@ -1,43 +1,58 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import router from './route/index.js';
-import errorHandler from './middleware/errorhandler.js';
-import dotenv from 'dotenv';
-import documentation from "./doc/swagger.json" assert{type:"json"};
-import swaggerUi from "swagger-ui-express"
-dotenv.config();
-import cors from "cors"
 
-const corsOptions ={
-    allowedHeaders: ["Authorization", "Content-Type" ],
-    methods: ["GET", "POST", "PUT", "UPDATE", "DELETE"],
-    origin:"*",
+import express from "express";
+import mongoose from "mongoose";
+import router from "./route/index.js";
+import errorHandler from "./middleware/errorHandler.js";
+import dotenv from "dotenv";
+import fs from "fs/promises";
+import swaggerUi from "swagger-ui-express";
+import cors from "cors";
+
+dotenv.config();
+
+const corsOptions = {
+  allowedHeaders: ["Authorization", "Content-Type"],
+  methods: ["GET", "POST", "PUT", "UPDATE", "DELETE"],
+  origin: "*",
+};
+
+// Load Swagger JSON asynchronously
+async function loadDocumentation() {
+  return JSON.parse(
+    await fs.readFile(new URL("./doc/swagger.json", import.meta.url), "utf-8")
+  );
 }
-//time seconds
-const options = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 30000, // 30 seconds timeout
-    socketTimeoutMS: 45000, // 45 seconds timeout
-    maxPoolSize: 10, // Maintain up to 10 socket connections
-  };
+
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use("/api_docs",swaggerUi.serve, swaggerUi.setup(documentation))
-app.use('/Weeding',router);
-mongoose.connect(`${process.env.db}`,options)
-.then(()=>
-{
-    console.log('connected to db');
-})
-.catch(err=>
-    {
-        console.log(err);
-    }
-)
-app.listen(process.env.PORT,()=>
-{
-    console.log(`server is running on port ${process.env.PORT}`);
-})
-app.use(errorHandler)
+
+// Use an async function to start the server
+async function startServer() {
+  try {
+    const documentation = await loadDocumentation();
+    app.use("/api_docs", swaggerUi.serve, swaggerUi.setup(documentation));
+
+    await mongoose.connect(`${process.env.db}`, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 30000, // 30 seconds timeout
+      socketTimeoutMS: 45000, // 45 seconds timeout
+      maxPoolSize: 10, // Maintain up to 10 socket connections
+    });
+
+    console.log("Connected to DB");
+
+    app.use("/Weeding", router);
+    
+
+    app.listen(process.env.PORT, () => {
+      console.log(`Server is running on port ${process.env.PORT}`);
+    });
+  } catch (error) {
+    console.error("Error starting the server:", error);
+  }
+}
+
+startServer();
+app.use(errorHandler);

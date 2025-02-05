@@ -10,7 +10,7 @@ export const addNewContact = asyncWrapper(async (req, res, next) => {
         return next(new BadRequestError(errors.array()[0].msg));
     };
     const newContact = await contactModel.create(req.body)
-    return res.status(201).json({message:"new contact created successfully",Contact:newContact});
+    return res.status(201).json({message:"Message received successfully",Contact:newContact});
 });
 
 export const ListContact = asyncWrapper(async (req, res, next) => {

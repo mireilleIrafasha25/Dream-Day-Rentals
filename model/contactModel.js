@@ -10,7 +10,7 @@ const contactSchema = new schema({
         type:String,
         required:true,
     },
-    message:{
+    message1:{
         type:String,
         required:true,
     }

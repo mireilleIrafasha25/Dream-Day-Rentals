@@ -125,7 +125,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/User"
+              "$ref": "#/components/schemas/Login"
             }
           }
         ],
@@ -204,7 +204,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/User"
+              "$ref": "#/components/schemas/Verify"
             }
           }
         ],
@@ -259,7 +259,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/User"
+              "$ref": "#/components/schemas/ForgotPassword"
             }
           }
         ],
@@ -314,7 +314,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/User"
+              "$ref": "#/components/schemas/ResetPassword"
             }
           }
         ],
@@ -1218,6 +1218,69 @@
           "confirmpassword"
         ]
       },
+      "Login":{
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "email of the User"
+          },
+          "password": {
+            "type": "string",
+            "description": "password of the User"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ]
+      },
+      "Verify":{
+        "type":"object",
+        "properties":{
+          "otp":{
+            "type":"number",
+            "description":"otp sending to email"
+          },
+          "email":{
+            "type":"string",
+            "description":"email of the User"
+          }
+        },
+        "required":[
+          "email",
+          "otp"
+        ]
+      },
+      "ForgotPassword":{
+        "type":"object",
+        "properties":{
+          "email":{
+            "type":"string",
+            "description":"email of the User"
+          }
+        },
+        "required":[
+          "email"
+        ]
+      },
+      "ResetPassword":{
+        "type":"object",
+        "properties":{
+          "email":{
+            "type": "string",
+            "description": "email of the User"
+          },
+          "password":{
+            "type": "string",
+            "description": "password of the User"
+          }
+        },
+        "required":[
+          "email",
+          "password"
+        ]
+      },
       "Contact":{
         "type": "object",
         "properties": {
@@ -1229,7 +1292,7 @@
             "type": "string",
             "description": "email of the contact"
           },
-          "message": {
+          "message1": {
             "type": "string",
             "description": "phoneNumber of the contact"
           }
