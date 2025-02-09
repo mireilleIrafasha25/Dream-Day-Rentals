@@ -13,9 +13,9 @@ const userSchema=new schema({
         required:false,
             message:["Please enter your last name"]},
     email:{
-        type:String,
-        required:true,
-        unique:true,
+        type: String,
+        unique: true,
+        required: [true, 'Email is required']
     },
     password:{
         type:String,

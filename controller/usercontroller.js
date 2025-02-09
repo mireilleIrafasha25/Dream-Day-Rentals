@@ -50,6 +50,10 @@ export const SignUp=asyncWrapper(async(req,res,next)=>
         otp: otp,
         otpExpires:otpExpirationDate
     });
+    if (!req.body.email) {
+        return res.status(400).send('Email is required');
+      }
+      
     const savedUser= await newUser.save();
     // console.log(savedUser);
  await sendEmail(req.body.email,"Verify your account",`Your OTP is ${otp}`)
@@ -119,7 +123,7 @@ export const SignIn=asyncWrapper(async(req,res,next)=>
         return next(new BadRequestError('Invalid Password'))
     }
     //Generate token
-    const token = jwt.sign({id:FoundUser.id,email:FoundUser.email},process.env.JWT_SECRET_KEY, {expiresIn:'1h'});
+    const token = jwt.sign({id:FoundUser.id,email:FoundUser.email,Firstname:FoundUser.Firstname,Lastname:FoundUser.Lastname,role: FoundUser.role },process.env.JWT_SECRET_KEY, {expiresIn:'1h'});
 
     res.status(200).json({
         message:"Login successful",
@@ -236,5 +240,53 @@ export const ResetPassword = asyncWrapper(async (req, res, next) => {
         })
     }
    });
+   export const updateUser = asyncWrapper(async (req, res, next) => {
+    const { id } = req.params;
+    const updatedData = req.body;
+    
+    const updatedUser = await UserModel.findByIdAndUpdate(id, updatedData, { new: true, runValidators: true });
+
+    if (!updatedUser) {
+        return next(new NotFoundError('User not found'));
+    }
+
+    res.status(200).json({
+        message: "User updated successfully",
+        user: updatedUser
+    });
+});
+export const deleteUser = asyncWrapper(async (req, res, next) => {
+    const { id } = req.params;
+
+    const deletedUser = await UserModel.findByIdAndDelete(id);
+
+    if (!deletedUser) {
+        return next(new NotFoundError('User not found'));
+    }
+
+    res.status(200).json({
+        message: "User deleted successfully"
+    });
+});
+export const findUserByName = asyncWrapper(async (req, res, next) => {
+    const { name } = req.query;
+
+    const users = await UserModel.find({
+        $or: [
+            { Firstname: { $regex: name, $options: "i" } },  // Case-insensitive search
+            { Lastname: { $regex: name, $options: "i" } }
+        ]
+    });
+
+    if (!users.length) {
+        return next(new NotFoundError('No user found with that name'));
+    }
+
+    res.status(200).json({
+        size: users.length,
+        users
+    });
+});
+
 
 
