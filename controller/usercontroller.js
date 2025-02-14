@@ -241,20 +241,34 @@ export const ResetPassword = asyncWrapper(async (req, res, next) => {
     }
    });
    export const updateUser = asyncWrapper(async (req, res, next) => {
-    const { id } = req.params;
+    // Extract email and updated data from the request body
+    const { email } = req.body;
     const updatedData = req.body;
-    
-    const updatedUser = await UserModel.findByIdAndUpdate(id, updatedData, { new: true, runValidators: true });
-
-    if (!updatedUser) {
-        return next(new NotFoundError('User not found'));
-    }
-
-    res.status(200).json({
+  
+    try {
+      // Find the user by email and update with new data
+      const updatedUser = await UserModel.findOneAndUpdate(
+        { email },                // Search for a user with this email
+        updatedData,              // Update the user with this new data
+        { new: true, runValidators: true } // Return the updated user and run validators
+      );
+  
+      // If no user is found with the given email, return a 404 error
+      if (!updatedUser) {
+        return next(new NotFoundError('User with this email not found'));
+      }
+  
+      // Respond with the updated user data
+      res.status(200).json({
         message: "User updated successfully",
         user: updatedUser
-    });
-});
+      });
+    } catch (error) {
+      // Handle any unexpected errors
+      next(error);
+    }
+  });
+  
 export const deleteUser = asyncWrapper(async (req, res, next) => {
     const { id } = req.params;
 

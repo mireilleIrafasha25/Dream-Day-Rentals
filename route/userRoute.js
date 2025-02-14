@@ -12,7 +12,7 @@ route.post('/resetpassword',resetPasswordValidation,ResetPassword)
 route.post('/forgotpassword',forgotpasswordValidation,ForgotPassword)
 route.post('/verify',otpValidation,Validateopt)
 route.post('/logout',Logout)
-route.put('/update/:id',updateUser)
+route.put('/updateByEmail',updateUser)
 route.delete('/delete/:id',deleteUser)
 route.get('/search/:id',deleteUser)
 export default route;
