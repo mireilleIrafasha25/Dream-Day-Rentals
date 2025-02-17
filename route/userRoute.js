@@ -14,5 +14,5 @@ route.post('/verify',otpValidation,Validateopt)
 route.post('/logout',Logout)
 route.put('/updateByEmail',updateUser)
 route.delete('/delete/:id',deleteUser)
-route.get('/search/:id',deleteUser)
+route.get('/search/:id',findUserByName)
 export default route;
